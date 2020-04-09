@@ -1,28 +1,26 @@
 <script>
 
   import PublicLayout from './../layout/public.svelte'
-  // import {client} from './../services/graphql'
   import {LOGIN} from './../entity/auth'
-  import { getClient,setClient, mutate } from 'svelte-apollo';
-
-
-  import ApolloClient, { gql } from 'apollo-boost';
-
-  const client = new ApolloClient({
-    uri : 'https://graphql.pagevamp.pv/graphql',
-  })
-
-
-  setClient(client)
+  import Spinner from './../components/utils/loader/spinner.svelte'
+  import {getClient, setClient, mutate} from 'svelte-apollo';
+  import {setLocalStorageItem} from './../services/storage'
+  import {login} from './../entity/auth'
 
   let errors = {
+    status: false,
     email: {
       message: ''
     },
     password: {
       message: ''
     },
+    auth: {
+      message: false
+    }
   }
+
+  let buttonLoader = false;
 
   function resetError() {
     errors = {
@@ -33,44 +31,52 @@
       password: {
         message: ''
       },
+      auth: {
+        message: ''
+      }
     }
   }
 
   async function onSubmit(e) {
+    buttonLoader = true;
     e.preventDefault();
 
     resetError();
     let email = e.target.email.value,
-         password =   e.target.password.value;
-    if (email) {
-      status = true;
+            password = e.target.password.value;
+
+    if (email == '') {
+      errors.status = true;
       errors.email.message = "Please fill your email !"
     }
 
-    if (password) {
-      status = true;
+    if (password == '') {
+      errors.status = true;
       errors.password.message = "Please fill your password !"
     }
 
-    // if (errors.status) {
-    //   return true
-    // }
+    if (errors.status) {
+      buttonLoader = false;
+      return true
+    }
 
-    const client = getClient();
-    let title = '';
-    let author = '';
 
-      try {
-        let res = await mutate(client, {
-          mutation: LOGIN,
-          variables: { email, password }
-        });
+    try {
+      let res = await login(email, password);
 
-        console.log(res);
-      } catch(error) {
-        console.log(error);
-        // TODO
+      if(res) {
+        setLocalStorageItem('access_token',res.api_token)
       }
+
+      if(!res) {
+        errors.auth.message = 'Please try again'
+      }
+      buttonLoader = false;
+
+    } catch (error) {
+      errors.auth.message = 'Invalid credentials'
+      buttonLoader = false;
+    }
 
   }
 </script>
@@ -93,6 +99,16 @@
         <small id="password" class="form-text text-muted">{errors.password.message}</small>
       </div>
 
+
+      {#if errors.auth.message }
+        <div class="alert alert-danger" role="alert">
+          {errors.auth.message}
+        </div>
+      {/if}
+
+
+
+      <Spinner visibility={buttonLoader}/>
       <button type="submit" class="btn btn-primary">Login</button>
 
       <p>Or </p>

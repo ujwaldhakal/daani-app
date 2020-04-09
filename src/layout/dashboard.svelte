@@ -3,13 +3,14 @@
   import Footer from './../components/footer.svelte'
   import ApolloClient, { gql } from 'apollo-boost';
   import { setClient,query } from 'svelte-apollo';
+  import fetch from 'node-fetch'
 
   const client = new ApolloClient({
     uri : 'https://graphql.pagevamp.pv/graphql',
+    fetch:fetch
   })
 
 
-  setClient(client)
 
   const BOOKS = gql`
   {
@@ -33,15 +34,5 @@
 
 <div class="container">
 
-<!--  {#await $books}-->
-<!--    <li>Loading...</li>-->
-<!--  {:then result}-->
 
-<!--  {:catch error}-->
-<!--    <li>Error loading books: {error}</li>-->
-<!--  {/await}-->
-  <Header/>
-  <slot></slot>
-
-  <Footer/>
 </div>

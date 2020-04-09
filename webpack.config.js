@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+
+
 const path = require('path');
 const config = require('sapper/config/webpack.js');
 const pkg = require('./package.json');
@@ -14,7 +16,8 @@ module.exports = {
 	client: {
 		entry: config.client.entry(),
 		output: config.client.output(),
-		resolve: { alias, extensions, mainFields },
+		resolve: { alias, extensions, mainFields},
+
 		module: {
 			rules: [
 				{
@@ -27,7 +30,12 @@ module.exports = {
 							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
 						}
 					}
-				}
+				},
+        {
+          type: 'javascript/auto',
+          test: /\.mjs$/,
+          use: []
+        }
 			]
 		},
 		mode,

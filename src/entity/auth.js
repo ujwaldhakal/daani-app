@@ -71,7 +71,49 @@ async function loginWithFacebook() {
 
 }
 
-export {login, loginWithFacebook}
+
+async function register(email, password) {
+  try {
+
+    let response = await mutate(client, {
+      errorPolicy: "all",
+      mutation: gql`
+        mutation Register($email: String!,$password: String!){
+          register(email: $email,password: $password) {
+            api_token
+          }
+        }
+      `,
+      variables: {
+        email: email,
+        password: password
+
+      }
+    })
+
+    console.log(response);
+    if (response.data && response.data.register) {
+      return response.data.register;
+    }
+
+
+    if (response.errors && response.errors[0]) {
+      let error = response.errors[0];
+      if (error.extensions.validation && error.extensions.validation.email) {
+        return {error: error.extensions.validation.email[0]}
+      }
+    }
+
+    // throw new Error()
+
+  } catch (e) {
+
+    return  {error : "Something went wrong please contact support !"};
+
+  }
+}
+
+export {login, loginWithFacebook,register}
 
 
 

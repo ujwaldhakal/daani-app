@@ -1,6 +1,7 @@
 import ApolloClient, {gql} from 'apollo-boost';
 import client from "../services/graphql";
 import {mutate} from 'svelte-apollo';
+import {defaultErrorResponse} from "../services/error";
 
 
 async function login(email, password) {
@@ -15,6 +16,7 @@ async function login(email, password) {
   try {
     let res = await mutate(client, {
       mutation: LOGIN,
+      errorPolicy: "all",
       variables: {email, password}
     });
 
@@ -22,12 +24,16 @@ async function login(email, password) {
       return res.data.login;
     }
 
+
+    if (res.errors && res.errors[0]) {
+
+      return {error: res.errors[0].message}
+    }
+
     return false;
 
   } catch (error) {
-
-    console.log(error);
-    return false;
+    return defaultErrorResponse
   }
 
 }
@@ -108,12 +114,12 @@ async function register(email, password) {
 
   } catch (e) {
 
-    return  {error : "Something went wrong please contact support !"};
+    return defaultErrorResponse;
 
   }
 }
 
-export {login, loginWithFacebook,register}
+export {login, loginWithFacebook, register}
 
 
 

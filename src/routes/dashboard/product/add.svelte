@@ -4,6 +4,7 @@
   import {loadCategories,add} from './../../../entity/product'
   import {onMount} from 'svelte';
   import axios from 'axios';
+  import DashboardLayout from '../../../layout/dashboard.svelte'
 
   let errors = {
     status: false,
@@ -192,8 +193,7 @@
   }
 </script>
 
-<div class="container">
-  <Header/>
+<DashboardLayout>
   <div class="row">
 
     <form on:submit={submit}>
@@ -202,6 +202,7 @@
         <input type="text" class="form-control {errors.name.message ? ' is-invalid' : 'valid'}" id="product"
                bind:value={formData.name}
                aria-describedby="name" name="name" placeholder="Product Name">
+        <small class="error-text"> {errors.name.message}</small>
       </div>
 
       <div class="form-group">
@@ -215,6 +216,7 @@
             {/if}
           {/each}
         </select>
+        <small class="error-text"> {errors.catId.message}</small>
       </div>
 
       {#if formData.subCategories.length > 0}
@@ -235,6 +237,7 @@
                bind:value={formData.usedFor}
                id="product" aria-describedby="product"
                placeholder="Used for(years, months)">
+        <small class="error-text"> {errors.usedFor.message}</small>
       </div>
 
 
@@ -246,6 +249,7 @@
         <div class="cover-preview">
           <img src={formData.coverImagePreview} alt="" width="100px" height="100px">
         </div>
+        <small class="error-text"> {errors.coverPicId.message}</small>
       </div>
 
       <div class="form-group">
@@ -257,6 +261,7 @@
             <img src={image} alt="" width="100px" height="100px">
           {/each}
         </div>
+
       </div>
 
       <div class="form-group">
@@ -264,10 +269,9 @@
         <textarea class="form-control {errors.description.message ? ' is-invalid' : 'valid'}" name="description" id=""
                   bind:value={formData.description}
                   cols="40" rows="10"></textarea>
+        <small class="error-text"> {errors.description.message}</small>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
-
-  <Footer/>
-</div>
+</DashboardLayout>

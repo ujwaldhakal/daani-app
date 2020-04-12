@@ -68,7 +68,6 @@ async function add(formData) {
     })
 
 
-    console.log("test here");
   } catch (e) {
     console.log(e);
   }

@@ -5,16 +5,7 @@
   import {login, loginWithFacebook} from './../entity/auth'
   import {goto} from '@sapper/app';
   import Auth from './../components/helpers/auth.svelte'
-  import {onMount} from 'svelte';
   import FacebookLogin from './../components/login/facebook.svelte'
-
-  let FacebookSdk;
-
-  onMount(async () => {
-    const module = await import('./../components/helpers/facebook-sdk.svelte'); // for not rendering localstorage on ssr
-    FacebookSdk = module.default;
-  })
-
 
   let initialErrorState = {
     status: false,
@@ -35,8 +26,6 @@
 
   function resetError() {
     errors = initialErrorState
-
-
   }
 
   async function onSubmit(e) {
@@ -77,7 +66,6 @@
       buttonLoader = false;
 
     } catch (error) {
-      console.log(error);
       errors.auth.message = 'Invalid credentials'
       buttonLoader = false;
     }
@@ -85,14 +73,8 @@
   }
 
 
-
-
-
-
 </script>
 <Auth/>
-<svelte:component this={FacebookSdk}/>
-
 <PublicLayout>
   <div class="container">
     <h1>One man trash is anothers treasure</h1>

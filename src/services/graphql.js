@@ -9,6 +9,7 @@ import {getLocalStorageItem} from "./storage";
 
 const httpLink = createHttpLink({uri: 'https://graphql.pagevamp.pv/graphql', fetch: buildAxiosFetch(axios)});
 
+console.log(getLocalStorageItem('access_token'));
 const authLink = setContext((_, {headers}) => {
   // get the authentication token from local storage if it exists
   const token = getLocalStorageItem('access_token');

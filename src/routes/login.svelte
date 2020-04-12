@@ -1,13 +1,22 @@
 <script>
-
   import PublicLayout from './../layout/public.svelte'
-  import {LOGIN} from './../entity/auth'
   import Spinner from './../components/utils/loader/spinner.svelte'
-  import {getClient, setClient, mutate} from 'svelte-apollo';
   import {setLocalStorageItem} from './../services/storage'
-  import {login} from './../entity/auth'
+  import {login, loginWithFacebook} from './../entity/auth'
+  import {goto} from '@sapper/app';
+  import Auth from './../components/helpers/auth.svelte'
+  import {onMount} from 'svelte';
+  import FacebookLogin from './../components/login/facebook.svelte'
 
-  let errors = {
+  let FacebookSdk;
+
+  onMount(async () => {
+    const module = await import('./../components/helpers/facebook-sdk.svelte'); // for not rendering localstorage on ssr
+    FacebookSdk = module.default;
+  })
+
+
+  let initialErrorState = {
     status: false,
     email: {
       message: ''
@@ -18,23 +27,16 @@
     auth: {
       message: false
     }
-  }
+  };
 
+
+  let errors = initialErrorState;
   let buttonLoader = false;
 
   function resetError() {
-    errors = {
-      status: false,
-      email: {
-        message: ''
-      },
-      password: {
-        message: ''
-      },
-      auth: {
-        message: ''
-      }
-    }
+    errors = initialErrorState
+
+
   }
 
   async function onSubmit(e) {
@@ -42,8 +44,8 @@
     e.preventDefault();
 
     resetError();
-    let email = e.target.email.value,
-            password = e.target.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     if (email == '') {
       errors.status = true;
@@ -64,23 +66,32 @@
     try {
       let res = await login(email, password);
 
-      if(res) {
-        setLocalStorageItem('access_token',res.api_token)
+      if (res && res.api_token) {
+        setLocalStorageItem('access_token', res.api_token)
+        goto('dashboard/welcome')
       }
 
-      if(!res) {
+      if (!res) {
         errors.auth.message = 'Please try again'
       }
       buttonLoader = false;
 
     } catch (error) {
+      console.log(error);
       errors.auth.message = 'Invalid credentials'
       buttonLoader = false;
     }
 
   }
-</script>
 
+
+
+
+
+
+</script>
+<Auth/>
+<svelte:component this={FacebookSdk}/>
 
 <PublicLayout>
   <div class="container">
@@ -111,10 +122,11 @@
       <Spinner visibility={buttonLoader}/>
       <button type="submit" class="btn btn-primary">Login</button>
 
-      <p>Or </p>
+      OR
 
-      <button>Login with facebook</button>
     </form>
+
+    <FacebookLogin/>
 
   </div>
 </PublicLayout>

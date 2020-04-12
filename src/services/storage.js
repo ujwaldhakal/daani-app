@@ -1,13 +1,16 @@
 export function getLocalStorageItem(key) {
-  localStorage.getItem(getPrefix() + key);
+  if (typeof localStorage !== "undefined") {
+    console.log("getting upto here", localStorage)
+    return localStorage.getItem(getPrefix() + key);
+  }
 }
 
 export function setLocalStorageItem(key, data) {
-  localStorage.setItem(getPrefix() + key, data);
+  return localStorage.setItem(getPrefix() + key, data);
 }
 
 export function removeLocalStorageItem(key) {
-  localStorage.removeItem(getPrefix() + key);
+  return localStorage.removeItem(getPrefix() + key);
 }
 
 function getPrefix() {

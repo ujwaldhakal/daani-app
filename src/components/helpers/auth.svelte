@@ -6,9 +6,12 @@
   import client from './../../services/graphql'
   import {ME} from './../../entity/user'
   import {CURRENT_USER} from './../../services/store'
+  import { stores } from '@sapper/app';
+  const { page } = stores();
 
   onMount(async () => {
 
+    console.log("urrne tp",page);
     if (!getLocalStorageItem('access_token')) {
         goto('/login')
         return
@@ -24,7 +27,10 @@
           return res.data.me;
         });
       }
-      goto('/dashboard/welcome')
+
+      if($page.path && ($page.path.includes('register') ||$page.path.includes('login'))) {
+        goto('/dashboard/welcome')
+      }
 
     } catch (e) {
 

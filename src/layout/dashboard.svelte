@@ -30,7 +30,7 @@
   <svelte:component this={AuthRedirectHandler}/>
   <Header/>
   {#if currentUser.id}
-    yes lets see what happens
+    <slot></slot>
   {/if}
   <Footer/>
 

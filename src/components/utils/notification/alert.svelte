@@ -7,19 +7,19 @@
   }
 
   NOTIFICATION.subscribe((prevNotification) => {
-       notification.type = prevNotification.type,
-       notification.message = prevNotification.message
+    notification.type = prevNotification.type,
+            notification.message = prevNotification.message
 
-    if(prevNotification != '') {
+    if (prevNotification.type != '') {
       setTimeout(() => {
 
         NOTIFICATION.update(() => {
           return {
-                type: '',
-                message: ''
+            type: '',
+            message: ''
           }
         })
-      }, 3000);
+      }, 5000);
     }
   })
 

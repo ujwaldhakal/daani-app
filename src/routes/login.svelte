@@ -6,6 +6,8 @@
   import {goto} from '@sapper/app';
   import Auth from './../components/helpers/auth.svelte'
   import FacebookLogin from './../components/login/facebook.svelte'
+  import NotificationAlert from './../components/utils/notification/alert.svelte'
+  import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
 
   let initialErrorState = {
     status: false,
@@ -52,23 +54,24 @@
     }
 
 
-    try {
-      let res = await login(email, password);
+    let res = await login(email, password);
 
-      if (res && res.api_token) {
-        setLocalStorageItem('access_token', res.api_token)
-        goto('dashboard/welcome')
-      }
-
-      if (!res) {
-        errors.auth.message = 'Please try again'
-      }
-      buttonLoader = false;
-
-    } catch (error) {
-      errors.auth.message = 'Invalid credentials'
-      buttonLoader = false;
+    if (res && res.api_token) {
+      setLocalStorageItem('access_token', res.api_token)
+      goto('dashboard/welcome')
     }
+
+    if (res.error) {
+      NOTIFICATION.update(() => {
+        return {
+          type: ERROR,
+          message: res.error
+        }
+      })
+    }
+
+    buttonLoader = false;
+
 
   }
 
@@ -92,14 +95,7 @@
         <small id="password" class="form-text text-muted">{errors.password.message}</small>
       </div>
 
-
-      {#if errors.auth.message }
-        <div class="alert alert-danger" role="alert">
-          {errors.auth.message}
-        </div>
-      {/if}
-
-
+      <NotificationAlert/>
 
       <Spinner visibility={buttonLoader}/>
       <button type="submit" class="btn btn-primary">Login</button>

@@ -5,6 +5,7 @@
   import {register} from './../entity/auth'
   import NotificationAlert from './../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
+  import Auth from './../components/helpers/auth.svelte'
 
   let initialErrorState = {
     status: false,
@@ -91,6 +92,7 @@
 
 </script>
 
+<Auth/>
 <PublicLayout>
   <div class="container">
 

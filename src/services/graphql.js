@@ -2,9 +2,10 @@ import {createHttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory'
 import {ApolloClient} from "apollo-client";
 import axios from 'axios'
-const {buildAxiosFetch} = require("@lifeomic/axios-fetch");
 import {setContext} from 'apollo-link-context';
 import {getLocalStorageItem} from "./storage";
+import {mutate as gqlMutate,query as gqlQuery} from "svelte-apollo";
+const {buildAxiosFetch} = require("@lifeomic/axios-fetch");
 
 
 const httpLink = createHttpLink({uri: 'https://graphql.pagevamp.pv/graphql', fetch: buildAxiosFetch(axios)});
@@ -27,4 +28,25 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-export default client
+
+export const mutate = (schema, variables) => {
+
+  return gqlMutate(client, {
+    errorPolicy: "all",
+    mutation: schema,
+    variables: variables
+  });
+};
+
+
+export const query = (schema, variables) => {
+
+  if (variables === undefined) {
+    variables = {}
+  }
+  return gqlQuery(client, {
+    errorPolicy: "all",
+    query: schema,
+    variables: variables
+  }).result();
+};

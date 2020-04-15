@@ -1,9 +1,8 @@
 <script>
   import {getLocalStorageItem} from './../../services/storage'
   import {goto} from '@sapper/app';
-  import {query} from 'svelte-apollo';
   import {onMount} from 'svelte';
-  import client from './../../services/graphql'
+  import {query} from './../../services/graphql'
   import {ME} from './../../entity/user'
   import {CURRENT_USER} from './../../services/store'
   import { stores } from '@sapper/app';
@@ -18,7 +17,7 @@
     }
 
     try {
-      const res = await query(client, {query: ME}).result();
+      const res = await query(ME);
 
       if (res.data && res.data.me) {
 

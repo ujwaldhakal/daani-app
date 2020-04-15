@@ -1,6 +1,5 @@
 import ApolloClient, {gql} from 'apollo-boost';
-import client from "../services/graphql";
-import {mutate} from 'svelte-apollo';
+import {mutate} from "../services/graphql";
 import {defaultErrorResponse} from "../services/error";
 
 
@@ -14,11 +13,7 @@ async function login(email, password) {
   `;
 
   try {
-    let res = await mutate(client, {
-      mutation: LOGIN,
-      errorPolicy: "all",
-      variables: {email, password}
-    });
+    const res = await mutate(LOGIN, {email, password});
 
     if (res.data && res.data.login) {
       return res.data.login;
@@ -41,23 +36,24 @@ async function login(email, password) {
 
 async function loginWithFacebook() {
 
+  const schema = gql`
+    mutation loginWithFacebook($userID: String!,$token: String!){
+      loginWithFacebook(user_id: $userID,token: $token) {
+        api_token
+      }
+    }
+  `;
   return new Promise(function (resolve, reject) {
 
     window.FB.login(function (res) {
       if (res.authResponse && res.authResponse.userID) {
-        mutate(client, {
-          mutation: gql`
-            mutation loginWithFacebook($userID: String!,$token: String!){
-              loginWithFacebook(user_id: $userID,token: $token) {
-                api_token
-              }
-            }
-          `,
-          variables: {
+
+        mutate(schema,
+          {
             userID: res.authResponse.userID,
             token: res.authResponse.accessToken
           }
-        }).then(function (response) {
+        ).then(function (response) {
 
           if (response.data && response.data.loginWithFacebook && response.data.loginWithFacebook.api_token) {
             resolve(response.data.loginWithFacebook);
@@ -79,32 +75,27 @@ async function loginWithFacebook() {
 
 
 async function register(email, password) {
+  const schema = gql`
+    mutation Register($email: String!,$password: String!){
+      register(email: $email,password: $password) {
+        api_token
+      }
+    }
+  `;
   try {
-
-    let response = await mutate(client, {
-      errorPolicy: "all",
-      mutation: gql`
-        mutation Register($email: String!,$password: String!){
-          register(email: $email,password: $password) {
-            api_token
-          }
-        }
-      `,
-      variables: {
+    const response = await mutate(schema, {
         email: email,
         password: password
-
       }
-    })
+    )
 
-    console.log(response);
     if (response.data && response.data.register) {
       return response.data.register;
     }
 
 
     if (response.errors && response.errors[0]) {
-      let error = response.errors[0];
+      const error = response.errors[0];
       if (error.extensions.validation && error.extensions.validation.email) {
         return {error: error.extensions.validation.email[0]}
       }

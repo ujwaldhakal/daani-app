@@ -10,8 +10,8 @@
     await loadProducts(initialPage)
   });
 
-  async function loadProducts(initialPage) {
-    let res = await listProducts(initialPage);
+  async function loadProducts(initialPage,filters) {
+    let res = await listProducts(initialPage,filters);
 
     if (res.error) {
       return true;
@@ -24,6 +24,13 @@
   async function loadMore() {
     initialPage += 1
     await loadProducts(initialPage);
+  }
+
+  async function search(e) {
+    products = [];
+    console.log("how many req")
+    let res = await loadProducts(initialPage,{search: "asd"})
+    console.log(res,"done");
   }
 
   async function soldOut(id) {
@@ -58,6 +65,10 @@
   <DashboardLayout>
     <div class="row">
       <div class="col-12">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Search</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Search Query" on:keypress={search}>
+        </div>
         <table class="table table-image">
           <thead>
           <tr>

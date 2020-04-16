@@ -69,12 +69,16 @@ async function add(formData) {
 }
 
 
-async function listProducts(currentPage) {
+async function listProducts(currentPage,filters) {
+  console.log("calling",{
+    page: currentPage,
+    filter: filters
+  })
   const schema = gql`
-    query me($currentPage: Int,$limit: Int!){
+    query me($currentPage: Int,$limit: Int!,$filter: String ){
       me{
         id,
-        products(page:$currentPage,first: $limit){
+        products(page:$currentPage,first: $limit, filter: $filter){
           data{
             id,
             name,
@@ -101,10 +105,15 @@ async function listProducts(currentPage) {
     }
   `;
   try {
-    const res = await query(schema, {
+    let variables = {
       currentPage: currentPage,
       limit: 10
-    });
+    };
+
+    if(filters !== undefined) {
+      variables.filter = filters;
+    }
+    const res = await query(schema, variables);
 
 
     if (res.data && res.data.me.products && res.data.me.products.data.length > 0) {
@@ -117,6 +126,8 @@ async function listProducts(currentPage) {
     }
 
   } catch (e) {
+
+    console.log(e);
 
     return defaultErrorResponse;
   }

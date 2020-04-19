@@ -3,5 +3,7 @@
 </script>
 
 <DashboardLayout>
-<h1>Welcome to dashboard</h1>
+  <div class="row">
+    <h1>Welcome to dashboard</h1>
+  </div>
 </DashboardLayout>

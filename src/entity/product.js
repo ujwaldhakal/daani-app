@@ -52,7 +52,7 @@ async function add(formData) {
 
   try {
 
-    const response = await mutate(schema,
+    const res = await mutate(schema,
       {
         name: formData.name,
         cover_image: formData.coverPicId,
@@ -62,16 +62,27 @@ async function add(formData) {
         used_for: formData.usedFor
       })
 
+    if (res.data && res.data.addProduct) {
+      return res.data.addProduct;
+    }
+
+    if (res.errors && res.errors[0]) {
+      return {error: res.errors[0].message}
+    }
 
   } catch (e) {
-    console.log(e);
+    return defaultErrorResponse;
   }
 }
 
 
-async function listProducts(currentPage) {
+async function listProducts(currentPage,filters) {
+  console.log("calling",{
+    page: currentPage,
+    filter: filters
+  })
   const schema = gql`
-    query me($currentPage: Int,$limit: Int!){
+    query me($currentPage: Int,$limit: Int! ){
       me{
         id,
         products(page:$currentPage,first: $limit){
@@ -101,10 +112,15 @@ async function listProducts(currentPage) {
     }
   `;
   try {
-    const res = await query(schema, {
+    let variables = {
       currentPage: currentPage,
       limit: 10
-    });
+    };
+
+    if(filters !== undefined) {
+      variables.filter = filters;
+    }
+    const res = await query(schema, variables);
 
 
     if (res.data && res.data.me.products && res.data.me.products.data.length > 0) {
@@ -117,6 +133,8 @@ async function listProducts(currentPage) {
     }
 
   } catch (e) {
+
+    console.log(e);
 
     return defaultErrorResponse;
   }

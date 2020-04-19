@@ -55,9 +55,28 @@
       products = newCollection;
     }
   }
+
+
+  let timer;
+  async function search(e) {
+
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      products = []
+      const searchKeyword = e.target.value;
+      initialFilter.search = searchKeyword;
+      await loadProducts(initialPage,initialFilter)
+      console.log(searchKeyword);
+    }, 750);
+
+  }
 </script>
 
 <div class="table-responsive">
+  <div class="p-4 bg-secondary">
+    <p>Search</p>
+    <input type="text" class="form-control form-control-alternative" placeholder="Alternative input" on:keyup={search}>
+  </div>
   <table class="table align-items-center table-flush">
     <thead class="thead-light">
     <tr>

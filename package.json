@@ -21,9 +21,11 @@
     "encoding": "^0.1.12",
     "graphql": "^15.0.0",
     "node-fetch": "^2.6.0",
-    "polka": "next",
+    "node-sass": "^4.13.1",
+    "polka": "^0.5.2",
     "sirv": "^0.4.0",
     "svelte-apollo": "^0.3.0",
+    "svelte-preprocess": "^3.7.1",
     "sveltestrap": "^3.3.3"
   },
   "devDependencies": {

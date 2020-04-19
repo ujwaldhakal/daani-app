@@ -10,8 +10,8 @@
     await loadProducts(initialPage)
   });
 
-  async function loadProducts(initialPage,filters) {
-    let res = await listProducts(initialPage,filters);
+  async function loadProducts(initialPage) {
+    let res = await listProducts(initialPage);
 
     if (res.error) {
       return true;
@@ -61,57 +61,67 @@
     }
   }
 </script>
-<div class="container">
-  <DashboardLayout>
-    <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Search</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Search Query" on:keypress={search}>
-        </div>
-        <table class="table table-image">
-          <thead>
+
+<DashboardLayout>
+
+  <div class="row">
+    <div class="card">
+      <!-- Card header -->
+      <div class="card-header border-0">
+        <h3 class="mb-0">Your all active product list</h3>
+      </div>
+      <!-- Light table -->
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Image</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
+            <th scope="col" class="sort" data-sort="name">Name</th>
+            <th scope="col" class="sort" data-sort="budget">Category</th>
+            <th scope="col" class="sort" data-sort="status">Image</th>
+            <th scope="col" class="sort" data-sort="completion">Action</th>
+            <th scope="col"></th>
           </tr>
           </thead>
-          <tbody>
+          <tbody class="list">
+
           {#each products as product}
             <tr>
-              <th scope="row">{product.name}</th>
-              <td>{product.category ? product.category.name : ''}</td>
-              <td class="w-25">
-                {#each product.media as image}
-                  {#if image.category == "cover_image"}
-                    <img src={image.path}
-                         class="img-fluid img-thumbnail" alt="" width="100px">
-                  {/if}
-                {/each}
+              <th scope="row">
+                <span>{product.name}</span>
+              </th>
+              <td class="budget">
+                <span>{product.category ? product.category.name : ''}</span>
               </td>
-              <td>{product.is_available ? "available" : "sold out"}</td>
+              <td>
+                <div class="avatar-group">
+                <span>
+                  {product.category ? product.category.name : ''}
+                </span>
+                </div>
+              </td>
+
               <td>
                 {#if product.is_available }
                   <button on:click={() => soldOut(product.id) }> Sold Out</button>
                   <button> Edit</button>
                   <button on:click={() => deleteProduct(product.id)}> Delete</button>
                 {:else}
-                  <p>No action required</p>
+                  <p>Sold out</p>
                 {/if}
-              </td>
 
+              </td>
             </tr>
           {/each}
           </tbody>
         </table>
-
+      </div>
+      <!-- Card footer -->
+      <div class="card-footer py-4">
         {#if products.length < paginator.total}
           <button on:click={loadMore}> Load More</button>
         {/if}
       </div>
     </div>
-  </DashboardLayout>
-</div>
+  </div>
+
+</DashboardLayout>

@@ -52,7 +52,7 @@ async function add(formData) {
 
   try {
 
-    const response = await mutate(schema,
+    const res = await mutate(schema,
       {
         name: formData.name,
         cover_image: formData.coverPicId,
@@ -62,9 +62,16 @@ async function add(formData) {
         used_for: formData.usedFor
       })
 
+    if (res.data && res.data.addProduct) {
+      return res.data.addProduct;
+    }
+
+    if (res.errors && res.errors[0]) {
+      return {error: res.errors[0].message}
+    }
 
   } catch (e) {
-    console.log(e);
+    return defaultErrorResponse;
   }
 }
 
@@ -75,10 +82,10 @@ async function listProducts(currentPage,filters) {
     filter: filters
   })
   const schema = gql`
-    query me($currentPage: Int,$limit: Int!,$filter: String ){
+    query me($currentPage: Int,$limit: Int! ){
       me{
         id,
-        products(page:$currentPage,first: $limit, filter: $filter){
+        products(page:$currentPage,first: $limit){
           data{
             id,
             name,

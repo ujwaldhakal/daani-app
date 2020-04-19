@@ -27,21 +27,21 @@
           <li class="nav-item">
             <a class="nav-link" href="/dashboard/product/list">
               <i class="ni ni-planet text-orange"></i>
-              <span class="nav-link-text">Products List</span>
+              <span class="nav-link-text">Your Active Products</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="map.html">
+            <a class="nav-link" href="/dashboard/product/sold">
               <i class="ni ni-pin-3 text-primary"></i>
-              <span class="nav-link-text">Sold Out Products</span>
+              <span class="nav-link-text">Your Sold Products</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="map.html">
-              <i class="ni ni-pin-3 text-primary"></i>
-              <span class="nav-link-text">Leaderboard</span>
-            </a>
-          </li>
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="map.html">-->
+<!--              <i class="ni ni-pin-3 text-primary"></i>-->
+<!--              <span class="nav-link-text">Leaderboard</span>-->
+<!--            </a>-->
+<!--          </li>-->
         </ul>
       </div>
     </div>

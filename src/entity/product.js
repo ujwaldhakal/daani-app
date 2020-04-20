@@ -82,10 +82,10 @@ async function listProducts(currentPage,filters) {
     filter: filters
   })
   const schema = gql`
-    query me($currentPage: Int,$limit: Int! ){
+    query me($currentPage: Int,$limit: Int!,$filter : ProductFilter  ){
       me{
         id,
-        products(page:$currentPage,first: $limit){
+        products(page:$currentPage,first: $limit, filter: $filter){
           data{
             id,
             name,

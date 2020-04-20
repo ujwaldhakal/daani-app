@@ -3,7 +3,7 @@
   import ProductsTableListView from './../../../components/dashboard/products/table-list.svelte'
 
   let filter = {
-    sold : false
+    sold : true
   }
 </script>
 
@@ -13,7 +13,7 @@
     <div class="card">
       <!-- Card header -->
       <div class="card-header border-0">
-        <h3 class="mb-0">Your all active product list</h3>
+        <h3 class="mb-0">Your all sold product list</h3>
       </div>
       <!-- Light table -->
       <ProductsTableListView initialFilter={filter}/>

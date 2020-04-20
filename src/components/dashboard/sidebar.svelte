@@ -13,6 +13,7 @@
         <!-- Nav items -->
         <ul class="navbar-nav">
           <li class="nav-item">
+
             <a class="nav-link active" href="/dashboard/welcome">
               <i class="ni ni-tv-2 text-primary"></i>
               <span class="nav-link-text">Dashboard</span>
@@ -20,7 +21,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/dashboard/product/add">
-              <i class="ni ni-tv-2 text-primary"></i>
+              <i class="ni ni-shop text-primary"></i>
               <span class="nav-link-text">Add Product</span>
             </a>
           </li>

@@ -76,11 +76,7 @@ async function add(formData) {
 }
 
 
-async function listProducts(currentPage,filters) {
-  console.log("calling",{
-    page: currentPage,
-    filter: filters
-  })
+async function listProducts(currentPage, filters) {
   const schema = gql`
     query me($currentPage: Int,$limit: Int!,$filter : ProductFilter  ){
       me{
@@ -117,7 +113,7 @@ async function listProducts(currentPage,filters) {
       limit: 10
     };
 
-    if(filters !== undefined) {
+    if (filters !== undefined) {
       variables.filter = filters;
     }
     const res = await query(schema, variables);
@@ -195,4 +191,64 @@ async function destroy(id) {
 }
 
 
-export {loadCategories, add, listProducts, sold, destroy}
+async function loadAllPublicProducts(currentPage, filters) {
+
+  const schema = gql`
+    query products($currentPage: Int,$limit: Int!,$filter : ProductFilter  ){
+      products(page:$currentPage,first: $limit, filter: $filter){
+        data{
+          id,
+          name,
+          description,
+          slug,
+          is_available,
+          category{
+            name
+          },
+          media{
+            id,
+            path,
+            category
+          }
+        },
+        paginatorInfo{
+          total,
+          perPage,
+          currentPage,
+          lastPage
+        }
+      }
+    }
+  `;
+
+  try {
+    let variables = {
+      currentPage: currentPage,
+      limit: 9
+    };
+
+    if (filters !== undefined) {
+      variables.filter = filters;
+    }
+    const res = await query(schema, variables);
+
+
+    if (res.data && res.data.products && res.data.products.data.length > 0) {
+
+      return res.data.products;
+    }
+
+    if (res.errors && res.errors[0]) {
+      return {error: res.errors[0].message}
+    }
+
+  } catch (e) {
+
+    console.log(e);
+
+    return defaultErrorResponse;
+  }
+
+}
+
+export {loadCategories, add, listProducts, sold, destroy, loadAllPublicProducts}

@@ -1,4 +1,5 @@
 <script>
+  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
   import Header from './../components/header.svelte'
   import Footer from './../components/footer.svelte'
@@ -69,7 +70,6 @@
           <ProductBox name="{product.name}" slug="{product.slug}"/>
         </div>
       {/each}
-
       {#if paginator &&  currentPage < paginator.lastPage }
         <button class="btn" on:click={loadMore}> Load More</button>
       {/if}

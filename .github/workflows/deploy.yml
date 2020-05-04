@@ -1,0 +1,46 @@
+name: Build and Deploy to Cloud Run
+on: [push]
+
+env:
+  GCLOUD_PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+  RUN_REGION: us-central1
+  SERVICE_NAME: ${{ secrets.CLOUD_RUN_SERVICE_NAME }}
+
+jobs:
+  setup-build-deploy:
+    name: Setup, Build, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      # Setup gcloud CLI
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '275.0.0'
+          service_account_email: "testgithubaction@pvstaging.iam.gserviceaccount.com"
+          service_account_key: ${{ secrets.GCLOUD_AUTH }}
+
+      # Configure gcloud CLI
+      - name: gcloud Set up
+        run: |
+          gcloud config set project $GCLOUD_PROJECT_ID
+      # Build and push image to Google Container Registry
+      - name: Build
+        run: |
+          gcloud builds submit -t gcr.io/$GCLOUD_PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+      # Deploy image to Cloud Run
+      - name: Deploy
+        run: |
+          gcloud run services add-iam-policy-binding  $SERVICE_NAME --member="allUsers" --role="roles/run.invoker" --platform=managed --region="$RUN_REGION"
+          gcloud run deploy $SERVICE_NAME \
+            --region $RUN_REGION \
+            --image gcr.io/$GCLOUD_PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
+            --platform managed \
+            --allow-unauthenticated
+

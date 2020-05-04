@@ -1,13 +1,19 @@
 <script>
-  import Header from '../../../components/header.svelte'
-  import Footer from '../../../components/footer.svelte'
-  import {loadCategories, add} from './../../../entity/product'
+  import {stores} from '@sapper/app';
+  import {loadCategories, update,verifyOwnership} from './../../../../entity/product'
   import {onMount} from 'svelte';
   import axios from 'axios';
-  import DashboardLayout from '../../../layout/dashboard.svelte'
-  import NotificationAlert from './../../../components/utils/notification/alert.svelte'
-  import {NOTIFICATION, SUCCESS, ERROR} from './../../../services/store'
+  import DashboardLayout from '../../../../layout/dashboard.svelte'
+  import NotificationAlert from './../../../../components/utils/notification/alert.svelte'
+  import {NOTIFICATION, SUCCESS, ERROR} from './../../../../services/store'
+  // import {verifyOwnership} from './../../../../entity/product'
 
+  const {page} = stores();
+
+  const slug = $page.params.slug;
+
+
+  let product = {};
   let errors = {
     status: false,
     name: {
@@ -22,6 +28,9 @@
     galleryIds: {
       message: '',
     },
+    usedFor: {
+      message: '',
+    },
     description: {
       message: '',
     }
@@ -34,40 +43,80 @@
     categories: [],
     subCategories: [],
     subCatId: 0,
-    catId: 0,
+    catId: 1,
     coverImagePreview: '',
     coverPicId: 0,
     galleryIds: 0,
+    usedFor: '',
     coverPic: 0,
-
 
   };
 
   let formData = initialFormData
 
+  function resetForm() {
+    formData = initialFormData;
+  }
+
+  let id ="1";
+  let value = 1;
+
+
 
   onMount(async () => {
+
     let res = await loadCategories()
     if (res.error) {
       return true;
     }
 
     formData.categories = res;
+    product = await verifyOwnership(slug);
+    if(product) {
+
+      formData.name = product.name
+      formData.catId = product.cat_id
+      formData.description = product.description
+
+      product.media.map((media) => {
+
+        if(media.category === 'cover_image') {
+          formData.coverImagePreview = media.path;
+          formData.coverPicId = media.id;
+          return;
+        }
+        formData.galleryIds += ','+media.id;
+        galleryPreviews[media.id] = media.path;
+      })
+
+
+      if(product.category.parent_id > 0 ) {
+        processCategory(product.category.parent_id);
+        formData.catId = product.category.parent_id;
+        formData.subCatId = product.category.id;
+      }
+    }
+
+
+    formData.categories = res;
   })
 
-  function resetForm() {
-    formData = initialFormData;
-  }
 
-  function selectCategory(e) {
+  const selectCategory = (e) => {
 
     formData.catId = e.target.value
+      processCategory(formData.catId);
+  }
+
+  const processCategory = (catId) => {
     let processedCategories = [];
     formData.categories.filter((item) => {
-      if (item.parent_id == formData.catId) {
+      if (item.parent_id == catId) {
         processedCategories.push(item);
       }
     })
+
+    console.log("waht we got ass",processedCategories)
 
     formData.subCategories = processedCategories
   }
@@ -83,8 +132,6 @@
 
       let message = "You can only upload 3 photos max only";
       errors.galleryIds.message = message;
-
-      alert(message);
 
       return true;
     }
@@ -125,10 +172,8 @@
             (e) {
       console.log(e);
     }
-    // formData.galleryPreviews = galleryPreviews;
 
   }
-
 
   async function uploadCoverImage(e) {
 
@@ -159,6 +204,7 @@
         let res = await axios.post(url, localFormData);
         if (res.data.status === "success") {
           formData.coverPicId = Object.keys(res.data.data)[0]
+          console.log("getting form control",formData);
         }
       }
     } catch
@@ -199,12 +245,14 @@
     }
 
 
-    const res = await add(formData);
+    const res = await update(product.id,formData);
+
+    console.log("geetting thawts",res);
 
     NOTIFICATION.update(() => {
       return {
         type: res.error ? ERROR : SUCCESS,
-        message: res.error ? res.error : 'Added successfully'
+        message: res.error ? res.error : 'Updated successfully'
       }
     })
 
@@ -255,25 +303,27 @@
             <label for="exampleFormControlInput1">Select Category</label>
             <select class="form-control {errors.catId.message ? ' is-invalid' : 'valid'}"
                     name="catId" on:change={selectCategory} id="exampleFormControlSelect1">
-              <option value=''>Please select category</option>
+              <option value=''>Please select category </option>
               {#each formData.categories as category}
                 {#if !category.parent_id}
-                  <option value={category.id}>{category.name}</option>
+                  <option value={category.id} selected={category.id == formData.catId }>{category.name}</option>
                 {/if}
               {/each}
             </select>
             <small class="error-text"> {errors.catId.message}</small>
           </div>
 
-          {#if formData.subCategories.length > 0}
+          {#if product.id && formData.subCategories.length > 0}
             <div class="bg-secondary p-1">
-              <label for="exampleFormControlInput1">Select Category</label>
+              <label for="exampleFormControlInput1">Select Sub Category</label>
               <select class="form-control {errors.catId.message ? ' is-invalid' : 'valid'}"
+                      value={formData.catId}
                       on:change={selectSubCategory}>
                 id="exampleFormControlSelect1">
                 <option value=''>Please select category</option>
                 {#each formData.subCategories as category}
-                  <option value={category.id}>{category.name}</option>
+                  <option value={category.id} selected={category.id == formData.subCatId }
+                  >{category.name}</option>
                 {/each}
               </select>
               <small class="error-text"> {errors.catId.message}</small>

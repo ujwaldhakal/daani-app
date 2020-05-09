@@ -35,14 +35,13 @@ async function loadCategories() {
 async function add(formData) {
 
   const schema = gql`
-    mutation addProduct($name: String!,$cat_id: Int!,$cover_image: Int!,$description: String!,$gallery_images: String, $used_for: String!){
+    mutation addProduct($name: String!,$cat_id: Int!,$cover_image: Int!,$description: String!,$gallery_images: String, ){
       addProduct(input:{
         name: $name,
         cover_image:$cover_image,
         cat_id: $cat_id,
         description:$description,
         gallery_images:$gallery_images
-        used_for: $used_for
 
       }) {
         id
@@ -59,8 +58,8 @@ async function add(formData) {
         description: formData.description,
         gallery_images: formData.galleryIds,
         cat_id: formData.subCatId ? formData.subCatId : formData.catId,
-        used_for: formData.usedFor
-      })
+      }
+    )
 
     if (res.data && res.data.addProduct) {
       return res.data.addProduct;
@@ -251,4 +250,85 @@ async function loadAllPublicProducts(currentPage, filters) {
 
 }
 
-export {loadCategories, add, listProducts, sold, destroy, loadAllPublicProducts}
+
+async function verifyOwnership(slug) {
+  const schema = gql`
+    query verifyProductOwnership($slug: String!){
+      verifyProductOwnership(slug:$slug){
+        id,
+        name,
+        slug,
+        cat_id,
+        category {
+          id,parent_id
+        },
+        media {
+          id,
+          path,
+          category
+        }
+        description
+      }
+    }
+  `
+  try {
+    let res = await query(schema, {
+      slug: slug
+    });
+
+    if (res.data && res.data.verifyProductOwnership) {
+      return res.data.verifyProductOwnership;
+    }
+
+    return false;
+
+  } catch (e) {
+
+    console.log(e);
+    throw new Error(e);
+  }
+}
+
+
+async function update(id, formData) {
+  try {
+    const schema = gql`
+      mutation updateProduct($id: ID!,$name: String!,$cat_id: Int!,$cover_image: Int!,$description: String!,$gallery_images: String!){
+        updateProduct(
+          id: $id,
+          input:{
+            name: $name,
+            cover_image:$cover_image,
+            cat_id: $cat_id,
+            description:$description,
+            gallery_images:$gallery_images
+          }) {
+          id
+        }
+      }
+    `
+    const res = await mutate(schema,
+      {
+        id: id,
+        name: formData.name,
+        cover_image: formData.coverPicId,
+        description: formData.description,
+        gallery_images: formData.galleryIds,
+        cat_id: formData.subCatId ? formData.subCatId : formData.catId,
+      })
+
+    if (res.errors && res.errors[0]) {
+      return {error: res.errors[0].message}
+    }
+
+    if (res.data && res.data.updateProduct) {
+      return res.data.updateProduct;
+    }
+
+
+  } catch (e) {
+    return defaultErrorResponse
+  }
+}
+
+export {loadCategories, add, listProducts, sold, destroy, loadAllPublicProducts, verifyOwnership, update}

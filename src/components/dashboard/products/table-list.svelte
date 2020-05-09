@@ -75,7 +75,7 @@
 <div class="table-responsive">
   <div class="p-4 bg-secondary">
     <p>Search</p>
-    <input type="text" class="form-control form-control-alternative" placeholder="Alternative input" on:keyup={search}>
+    <input type="text" class="form-control form-control-alternative" placeholder="Enter Your Search Query" on:keyup={search}>
   </div>
   <table class="table align-items-center table-flush">
     <thead class="thead-light">
@@ -108,7 +108,7 @@
         <td>
           {#if product.is_available }
             <button on:click={() => soldOut(product.id) }> Sold Out</button>
-            <button> Edit</button>
+            <a href="/dashboard/product/edit/{product.slug}"> Edit</a>
             <button on:click={() => deleteProduct(product.id)}> Delete</button>
           {:else}
             <p>Sold out</p>

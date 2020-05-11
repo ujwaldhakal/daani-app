@@ -18,6 +18,7 @@
     "axios": "^0.19.2",
     "compression": "^1.7.1",
     "cross-fetch": "^3.0.4",
+    "dotenv": "^8.2.0",
     "encoding": "^0.1.12",
     "graphql": "^15.0.0",
     "node-fetch": "^2.6.0",

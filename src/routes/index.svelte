@@ -6,7 +6,7 @@
   import {loadAllPublicProducts} from './../entity/product'
   import {onMount} from 'svelte';
   import ProductBox from './../components/dashboard/products/single-box.svelte'
-
+  import PublicLayout from './../layout/public.svelte'
 
   let currentPage = 1
   let filter = {
@@ -15,6 +15,7 @@
   let products = [];
   let paginator = [];
   let searchQuery = '';
+
   onMount(async () => {
     await loadProducts();
   })
@@ -41,6 +42,7 @@
   const search = async () => {
     products = [];
     paginator = [];
+    currentPage = 1;
     filter = {
       latest: true,
       search: searchQuery
@@ -50,8 +52,9 @@
   }
 </script>
 
-<div class="container">
-  <Header/>
+
+
+<PublicLayout>
   <h1>
     One man's trash is another's man treasure
   </h1>
@@ -75,5 +78,4 @@
       {/if}
     </div>
   </div>
-  <Footer/>
-</div>
+</PublicLayout>

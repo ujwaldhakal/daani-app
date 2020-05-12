@@ -49,13 +49,17 @@
     await loadProducts();
   }
 </script>
+<style lang="scss">
+  .test{
+    background-color: red;
+  }
+</style>
 
-<div class="container">
+<div class="container test">
   <Header/>
   <h1>
     One man's trash is another's man treasure
   </h1>
-
 
   <div class="search-input">
     <input type="text" placeholder="What are you looking" bind:value={searchQuery}>

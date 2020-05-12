@@ -54,12 +54,11 @@
 <div class="top-header">
   <Header/>
   <div class="container">
-    <div class="centered top-25">
+    <div class="centered pt-5">
       <h1 class="title-1 pb-3">
         One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
       </h1>
       <div class="search-box d-flex justify-content-around radius-100">
-
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
         <input type="text" placeholder="Where">
         <button on:click={search} class="btn-link btn-style-1">Search</button>
@@ -71,33 +70,93 @@
   <div class="latest-products row my-5">
     <div class="col-md-4">
       <div class="box-wrapper">
+      <!-- <figure><img src="/assets/img/product-img.jpg" alt="Product" /></figure> -->
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul>
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-12">
       <div class="text-center">
         <button class="radius-100 btn btn-success">Load More</button>
       </div>
-
     </div>
     <!-- <div class="row">
       {#each products as product}
@@ -124,7 +183,6 @@
       min-width: 150px;
       border: none;
       border-bottom: 1px solid #cacaca;
-
     }
   }
   .footer{

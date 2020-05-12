@@ -1,7 +1,23 @@
 // @import '../variables';
 .top-header{
-    background-color: green;
+    // background-color: rgba($color: #159933, $alpha: 1.0);
     color: white;
     background-image: url(../../assets/img/header-bg.svg);
+    background-size: 100%;
     border-bottom-left-radius: 210px;
+    background-position: 0 100%;
+    min-height: 350px;
+    position: relative;
+    &::after{
+        content: "";
+        display: block;
+        background:#159933;
+        height: 100%;
+        width: 101%;
+        position: absolute;
+        top: -57px;
+        border-bottom-left-radius: 383px;
+        z-index: -1;
+        left: -28px;
+    }
 }

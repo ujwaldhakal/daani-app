@@ -54,7 +54,7 @@
 <div class="top-header">
   <Header/>
   <div class="container">
-    <div class="centered top-25">
+    <div class="centered pt-5">
       <h1 class="title-1 pb-3">
         One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
       </h1>
@@ -70,6 +70,7 @@
   <div class="latest-products row my-5">
     <div class="col-md-4">
       <div class="box-wrapper">
+      <!-- <figure><img src="/assets/img/product-img.jpg" alt="Product" /></figure> -->
         <div class="hover-content d-flex align-items-end p-3">
           <span> Apple iMac 21.5-inch | 1.6GHz..
             <ul class="list-style-none title-sm">
@@ -156,7 +157,6 @@
       <div class="text-center">
         <button class="radius-100 btn btn-success">Load More</button>
       </div>
-
     </div>
     <!-- <div class="row">
       {#each products as product}

@@ -57,7 +57,6 @@
         One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
       </h1>
       <div class="search-box d-flex justify-content-around radius-100">
-        
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
         <input type="text" placeholder="Where">
         <button on:click={search} class="btn-link btn-style-1">Search</button>

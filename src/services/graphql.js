@@ -8,7 +8,7 @@ import {mutate as gqlMutate,query as gqlQuery} from "svelte-apollo";
 const {buildAxiosFetch} = require("@lifeomic/axios-fetch");
 
 
-const httpLink = createHttpLink({uri: 'https://graphql.pagevamp.pv/graphql', fetch: buildAxiosFetch(axios)});
+const httpLink = createHttpLink({uri: process.env.API_URL+'graphql', fetch: buildAxiosFetch(axios)});
 
 console.log(getLocalStorageItem('access_token'));
 const authLink = setContext((_, {headers}) => {

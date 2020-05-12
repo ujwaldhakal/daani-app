@@ -11,6 +11,8 @@ const dev = mode === 'development';
 const alias = { svelte: path.resolve('node_modules', 'svelte') };
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
+const dotenv = require('dotenv').config();
+
 
 module.exports = {
 	client: {
@@ -47,7 +49,8 @@ module.exports = {
 			// dev && new webpack.HotModuleReplacementPlugin(),
 			new webpack.DefinePlugin({
 				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+				'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.API_URL' : JSON.stringify(process.env.API_URL)
 			}),
 		].filter(Boolean),
 		devtool: dev && 'inline-source-map'

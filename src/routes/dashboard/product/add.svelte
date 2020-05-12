@@ -111,7 +111,7 @@
               'category',
               'gallery',
       )
-      let url = 'https://graphql.pagevamp.pv/' + 'api/media';
+      let url = process.env.API_URL + 'api/media';
       let res = await axios.post(url, localFormData);
       if (res.data.status === "success") {
         galleryPreviews = res.data.data
@@ -155,7 +155,7 @@
                 'category',
                 'cover_image',
         )
-        let url = 'https://graphql.pagevamp.pv/' + 'api/media';
+        let url = process.env.API_URL + 'api/media';
         let res = await axios.post(url, localFormData);
         if (res.data.status === "success") {
           formData.coverPicId = Object.keys(res.data.data)[0]

@@ -59,7 +59,6 @@
     One man's trash is another's man treasure
   </h1>
 
-
   <div class="search-input">
     <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
     <button on:click={search}>Search</button>

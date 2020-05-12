@@ -1,0 +1,12 @@
+.btn{
+    &-style{
+        &-1{
+            background-color: transparent !important;
+            box-shadow: none;
+            border: none;
+        }
+    }
+    &-link{
+        color: green !important;
+    }
+}

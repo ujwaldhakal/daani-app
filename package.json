@@ -22,7 +22,7 @@
     "encoding": "^0.1.12",
     "graphql": "^15.0.0",
     "node-fetch": "^2.6.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "polka": "^0.5.2",
     "sirv": "^0.4.0",
     "svelte-apollo": "^0.3.0",

@@ -10,8 +10,8 @@
 
   onMount(async () => {
 
-    console.log("urrne tp",page);
-    if (!getLocalStorageItem('access_token')) {
+    console.log($page.path.includes('register'));
+    if (!getLocalStorageItem('access_token') && !$page.path.includes('register')) {
         goto('/login')
         return
     }
@@ -25,11 +25,13 @@
         CURRENT_USER.update(() => {
           return res.data.me;
         });
+
+        if($page.path && ($page.path.includes('register') ||$page.path.includes('login'))) {
+          goto('/dashboard/welcome')
+        }
       }
 
-      if($page.path && ($page.path.includes('register') ||$page.path.includes('login'))) {
-        goto('/dashboard/welcome')
-      }
+
 
     } catch (e) {
 

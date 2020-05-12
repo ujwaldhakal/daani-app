@@ -1,5 +1,26 @@
 .box-wrapper{
-    min-height: 200px;
+    min-height: 300px;
     background-color: grey;
     margin-bottom: 25px;
+    position: relative;
+    .hover{
+        &-content{
+            opacity: 0;
+            background-color: rgba($color: #000000, $alpha: 1.0);
+            color: white;
+            transition: all 0.3s linear;
+            position: absolute;
+            transform:translateY(50px) ;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &:hover{
+        .hover{
+            &-content{
+                opacity: 1;
+                transform:translateY(0) ;
+            }
+        }
+    }
 }

@@ -69,26 +69,87 @@
   <div class="latest-products row my-5">
     <div class="col-md-4">
       <div class="box-wrapper">
+        <fi
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul>
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="box-wrapper">
+        <div class="hover-content d-flex align-items-end p-3">
+          <span> Apple iMac 21.5-inch | 1.6GHz..
+            <ul class="list-style-none title-sm">
+              <li>iMac 21.5-inch</li>
+              <li>1.6GHz dual-core intel Core i5 processor</li>
+              <li>Turbo Boost up to 2.7GHZ</li>
+            </ul>
+            <button class="btn btn-light">Learn More</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-md-12">
@@ -122,7 +183,6 @@
       min-width: 150px;
       border: none;
       border-bottom: 1px solid #cacaca;
-
     }
   }
   .footer{

@@ -51,22 +51,55 @@
     await loadProducts();
   }
 </script>
+<div class="top-header">
+  <Header/>
+  <div class="container">
+    <div class="centered top-25">
+      <h1 class="title-1 pb-3">
+        One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
+      </h1>
+      <div class="search-box d-flex justify-content-around radius-100">
 
-
-
-<PublicLayout>
-  <h1>
-    One man's trash is another's man treasure
-  </h1>
-
-  <div class="search-input">
-    <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
-    <button on:click={search}>Search</button>
+        <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
+        <input type="text" placeholder="Where">
+        <button on:click={search} class="btn-link btn-style-1">Search</button>
+      </div>
+    </div>
   </div>
+</div>
+<div class="container">
+  <div class="latest-products row my-5">
+    <div class="col-md-4">
+      <div class="box-wrapper">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box-wrapper">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box-wrapper">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box-wrapper">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box-wrapper">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box-wrapper">
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="text-center">
+        <button class="radius-100 btn btn-success">Load More</button>
+      </div>
 
-
-  <div class="latest-products">
-    <div class="row">
+    </div>
+    <!-- <div class="row">
       {#each products as product}
         <div class="col-sm-4">
           <ProductBox name="{product.name}" slug="{product.slug}"/>
@@ -75,6 +108,34 @@
       {#if paginator &&  currentPage < paginator.lastPage }
         <button class="btn" on:click={loadMore}> Load More</button>
       {/if}
-    </div>
+    </div> -->
   </div>
-</PublicLayout>
+  <Footer/>
+</div>
+<style lang="scss">
+  @import '../assets/scss/base/main';
+  @import '../assets/scss/base/components/header';
+
+  .search-box{
+    background-color: white;
+    padding:15px;
+    border: 6px solid green;
+    input{
+      min-width: 150px;
+      border: none;
+      border-bottom: 1px solid #cacaca;
+
+    }
+  }
+  .footer{
+    color: grey;
+    font-size: 11px;
+    border-top: 1px solid grey;
+    padding: 25px;
+    span{
+        color: blue;
+    }
+  }
+</style>
+
+

@@ -11,6 +11,9 @@ WORKDIR /usr/src/app
 
 COPY / ./
 
+RUN cp .env.live .env
+
+
 # Install production dependencies.
 RUN npm install
 

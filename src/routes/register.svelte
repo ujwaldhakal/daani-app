@@ -93,8 +93,12 @@
 </script>
 
 <Auth/>
+<style lang="scss">
+  @import "src/assets/scss/test";
+
+</style>
 <PublicLayout>
-  <div class="container">
+  <div class="container body">
 
     <div class="row">
       <div class="col-sm-6">

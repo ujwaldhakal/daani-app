@@ -1,0 +1,31 @@
+.title{
+    &-1{
+        font-size: 3rem;
+        font-weight: 300;
+        span{
+            font-size: 3.5rem;
+            font-weight: 600;
+
+        }
+    }
+    &-underline{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            border-bottom: 2px solid white;
+            display: inline-block;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            top: auto;
+        }
+    }
+    &-up{
+        text-transform: uppercase;
+    }
+    &-sm{
+        font-size: 80%;
+        opacity: 0.8;
+    }
+}

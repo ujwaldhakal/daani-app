@@ -54,8 +54,7 @@
 </script>
 <style lang="scss">
   @import '../assets/scss/base/main';
-  @import '../assets/scss/base/components/header';
-
+  @import '../../src/assets/scss/base/components/header';
   .search-box{
     background-color: white;
     padding:15px;
@@ -64,6 +63,10 @@
       min-width: 150px;
       border: none;
       border-bottom: 1px solid #cacaca;
+      &:focus{
+        border-bottom: 1px solid $color-primary !important;
+
+      }
     }
   }
   .footer{
@@ -95,11 +98,14 @@
 </div>
 <div class="container">
   <div class="latest-products row my-5">
-
       {#each products as product}
           <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
       {/each}
-
+    {#if products.length == 0}
+    <div class="loader text-center w-100">
+      <img src="../assets/img/icons/loader.gif">
+    </div>
+    {/if}
     {#if paginator &&  currentPage < paginator.lastPage }
       <div class="col-md-12">
         <div class="text-center">
@@ -111,5 +117,6 @@
   </div>
   <Footer/>
 </div>
+
 
 

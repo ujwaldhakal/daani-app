@@ -1,5 +1,6 @@
 <script>
   import PublicLayout from './../layout/public.svelte'
+  import Header from './../components/header.svelte'
   import Spinner from './../components/utils/loader/spinner.svelte'
   import {setLocalStorageItem} from './../services/storage'
   import {login, requestEmailVerificationLink} from './../entity/auth'
@@ -106,33 +107,37 @@
 </script>
 <Auth/>
 <PublicLayout>
-  <div class="container">
-    <h1>One man trash is anothers treasure</h1>
-    <form on:submit={onSubmit}>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
-        <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
-               name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="email" class="form-text text-muted">{errors.email.message}</small>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
-               id="exampleInputPassword1" placeholder="Password" name="password">
-        <small id="password" class="form-text text-muted">{errors.password.message}</small>
-      </div>
-      <NotificationAlert/>
-      {#if showRequestVerificationLink}
-      <div class="request-verification">
-        <span>You can re-generate email link from</span>
-        <button on:click={requestVerificationLink}>here</button>
-      </div>
+  <div class="container centered main-body pt-3">
+    <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
+    <div class="card-wrapper centered mt-5">
+      <form on:submit={onSubmit} class="form-center">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
+                name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="email" class="form-text text-muted">{errors.email.message}</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
+                id="exampleInputPassword1" placeholder="Password" name="password">
+          <small id="password" class="form-text text-muted">{errors.password.message}</small>
+        </div>
+        <NotificationAlert/>
+        {#if showRequestVerificationLink}
+          <div class="request-verification">
+            <span>You can re-generate email link from</span>
+            <button on:click={requestVerificationLink}>here</button>
+          </div>
         {/if}
-      <Spinner visibility={buttonLoader}/>
-      <button type="submit" class="btn btn-primary">Login</button>
-      OR
-    </form>
-    <FacebookLogin/>
-
+        <Spinner visibility={buttonLoader}/>
+          <button type="submit" class="btn btn-success">Login</button> or
+          <FacebookLogin/>
+      </form>
+    </div>
   </div>
 </PublicLayout>
+<style lang="scss">
+  @import '../assets/scss/base/main';
+  @import '../assets/scss/base/components/form';
+</style>

@@ -5,6 +5,9 @@
   import Footer from './../components/footer.svelte'
 
 </script>
+<style lang="scss">
+  @import '../assets/scss/base/main';
+</style>
 
 <div class="container-fluid">
   <Header/>

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 <script>
   import Header from './../components/header.svelte'
   import Footer from './../components/footer.svelte'

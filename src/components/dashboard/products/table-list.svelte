@@ -8,19 +8,22 @@
   let products = [];
   let paginator = {};
   let initialPage = 1;
+  let hasRequested = false
   onMount(async () => {
     await loadProducts(initialPage,initialFilter)
   });
 
   async function loadProducts(initialPage,filter) {
     let res = await listProducts(initialPage,filter);
-
-    if (res.error) {
+    if (!res || res.error) {
+      hasRequested = true;
       return true;
     }
     const collection = products.concat(res.data);
     products = collection;
     paginator = res.paginatorInfo
+    hasRequested = true;
+
   }
 
   async function loadMore() {
@@ -29,30 +32,34 @@
   }
 
   async function soldOut(id) {
-    let response = await sold(id);
+    if(confirm("Are you sure? Once sold cannot be unsold again !")) {
+      let response = await sold(id);
 
-    if (response.id) {
-      const newCollection = products.map((item) => {
-        if (item.id == id) {
-          item.is_available = 0;
-        }
-        return item;
-      })
+      if (response.id) {
+        const newCollection = products.map((item) => {
+          if (item.id == id) {
+            item.is_available = 0;
+          }
+          return item;
+        })
 
-      products = newCollection;
+        products = newCollection;
+      }
     }
   }
 
   async function deleteProduct(id) {
-    let response = await destroy(id);
-    if (response.id) {
-      const newCollection = products.filter((item) => {
-        if (item.id !== id) {
-          return item;
-        }
-      })
+    if(confirm("Are you sure? You cannot recover deleted product !")) {
+      let response = await destroy(id);
+      if (response.id) {
+        const newCollection = products.filter((item) => {
+          if (item.id !== id) {
+            return item;
+          }
+        })
 
-      products = newCollection;
+        products = newCollection;
+      }
     }
   }
 
@@ -72,56 +79,70 @@
   }
 </script>
 
+{#if hasRequested}
 <div class="table-responsive">
-  <div class="p-4 bg-secondary">
-    <p>Search</p>
-    <input type="text" class="form-control form-control-alternative" placeholder="Enter Your Search Query" on:keyup={search}>
-  </div>
-  <table class="table align-items-center table-flush">
-    <thead class="thead-light">
-    <tr>
-      <th scope="col" class="sort" data-sort="name">Name</th>
-      <th scope="col" class="sort" data-sort="budget">Category</th>
-      <th scope="col" class="sort" data-sort="status">Image</th>
-      <th scope="col" class="sort" data-sort="completion">Action</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody class="list">
-
-    {#each products as product}
+{#if products.length > 0 }
+    <div class="p-4 bg-secondary">
+      <p>Search</p>
+      <input type="text" class="form-control form-control-alternative" placeholder="Enter Your Search Query"
+             on:keyup={search}>
+    </div>
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
       <tr>
-        <th scope="row">
-          <span>{product.name}</span>
-        </th>
-        <td class="budget">
-          <span>{product.category ? product.category.name : ''}</span>
-        </td>
-        <td>
-          <div class="avatar-group">
+        <th scope="col" class="sort" data-sort="name">Name</th>
+        <th scope="col" class="sort" data-sort="budget">Category</th>
+        <th scope="col" class="sort" data-sort="status">Image</th>
+        <th scope="col" class="sort" data-sort="completion">Action</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody class="list">
+
+      {#each products as product}
+        <tr>
+          <th scope="row">
+            <span>{product.name}</span>
+          </th>
+          <td class="budget">
+            <span>{product.category ? product.category.name : ''}</span>
+          </td>
+          <td>
+            <div class="avatar-group">
                 <span>
                   {product.category ? product.category.name : ''}
                 </span>
-          </div>
-        </td>
+            </div>
+          </td>
 
-        <td>
-          {#if product.is_available }
-            <button on:click={() => soldOut(product.id) }> Sold Out</button>
-            <a href="/dashboard/product/edit/{product.slug}"> Edit</a>
-            <button on:click={() => deleteProduct(product.id)}> Delete</button>
-          {:else}
-            <p>Sold out</p>
-          {/if}
+          <td>
+            {#if product.is_available }
+              <button on:click={() => soldOut(product.id) }> Sold Out</button>
+              <a href="/dashboard/product/edit/{product.slug}"> Edit</a>
+              <button on:click={() => deleteProduct(product.id)}> Delete</button>
+            {:else}
+              <p>Sold out</p>
+            {/if}
 
-        </td>
-      </tr>
-    {/each}
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      {/each}
+      </tbody>
+    </table>
+{/if}
+
+{#if products.length === 0}
+  <div>No any products</div>
+{/if}
 </div>
+{/if}
 
-<!-- Card footer -->
+{#if !hasRequested }
+loading
+{/if}
+
+
+
 <div class="card-footer py-4">
   {#if products.length < paginator.total}
     <button on:click={loadMore}> Load More</button>

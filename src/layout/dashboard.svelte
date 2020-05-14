@@ -1,3 +1,4 @@
+
 <script>
   import Header from './../components/header.svelte'
   import Footer from './../components/footer.svelte'
@@ -26,10 +27,11 @@
 
 </script>
 
-<svelte:component this={AuthRedirectHandler}/>
 <link rel="stylesheet" href="/assets/css/argon.min.css">
 <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
 <link href="/assets/css/nucleo.css" rel="stylesheet">
+<svelte:component this={AuthRedirectHandler}/>
+
 {#if currentUser.id}
 
   <Sidebar/>
@@ -62,15 +64,16 @@
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="/" role="button" data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
+
                 <div class="media align-items-center">
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Welcome {currentUser.name}</span>
+                    <span class="mb-0 text-sm  font-weight-bold">Welcome {currentUser.name == null  ? 'Human' : currentUser.name }</span>
                   </div>
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
                 <div class="dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome {currentUser.name}</h6>
+                  <h6 class="text-overflow m-0">Welcome {currentUser.name == null  ? 'Human' : currentUser.name }</h6>
                 </div>
                 <a href="#!" class="dropdown-item">
                   <i class="ni ni-single-02"></i>

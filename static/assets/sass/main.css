@@ -1,9 +1,14 @@
 body{
-    background-color: #f9f9f9;
+    background-color: #f2f2f2;
 }
 
 .centered{
     margin: 0 auto;
+    text-align: center;
+}
+.centered p{
+    padding: 0 15%;
+    opacity: 0.8;
 }
 
 .divider-line{
@@ -13,7 +18,21 @@ body{
 input:focus{
     outline: none !important;
 }
-
+/* image */
+img{
+    max-width: 100%;
+}
+.img-wrap{
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.has-circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #d4d4d4;
+}
 /* loader */
 .loader{
     min-height: 135px;
@@ -40,7 +59,7 @@ input:focus{
 
 /* main-body */
 .main-body{
-    min-height: 530px;
+    min-height: 540px;
 }
 
 .has_circle--sm{

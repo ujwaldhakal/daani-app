@@ -1,5 +1,5 @@
 body{
-    background-color: #f2f2f2;
+    background-color: #f2f2f2 !important;
 }
 
 .centered{
@@ -55,6 +55,11 @@ img{
 
 .w-child-60 > *{
     width: 80%;
+}
+
+/* icon img */
+.icon svg{
+    width: 30px;
 }
 
 /* main-body */

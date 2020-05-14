@@ -72,7 +72,6 @@
 
     buttonLoader = false;
 
-
   }
 
 

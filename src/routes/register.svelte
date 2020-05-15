@@ -48,7 +48,6 @@
     const confirm_password = e.target.confirm_password.value;
 
     if (email == '') {
-      console.log("here too");
       errors.status = true;
       errors.email.message = "Please fill your email !"
     }
@@ -81,6 +80,7 @@
       NOTIFICATION.update(() => {
         return {type: ERROR, message: response.error}
       })
+
       return true;
     }
 
@@ -98,7 +98,7 @@
 
 </style>
 <PublicLayout>
-  <div class="container body">
+  <div class="container">
 
     <div class="row">
       <div class="col-sm-6">

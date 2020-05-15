@@ -9,7 +9,9 @@
 
     if (res && res.api_token) {
       setLocalStorageItem('access_token', res.api_token)
-      goto('dashboard/welcome')
+        window.location = window.location.origin + '/dashboard/welcome'
+        return
+
     }
   }
 

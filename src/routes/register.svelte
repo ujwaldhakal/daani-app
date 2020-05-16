@@ -94,50 +94,58 @@
 
 <Auth/>
 <style lang="scss">
-  @import "src/assets/scss/test";
-
+  // @import "src/assets/scss/test";
+  @import '../assets/scss/base/helpers/font';
+  @import '../assets/scss/base/components/button';
+  @import '../assets/scss/base/components/form';
 </style>
+
 <PublicLayout>
-  <div class="container">
+  <div class="container main-body pt-3">
+   <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
+    <div class="card-wrapper mt-5 centered w-80">
+      <div class="row">
+        <div class="col align-right">
+          <div class="d-flex color-random  flex-column justify-content-center align-items-end h-100">
+            <FacebookLogin/>
+            <FacebookLogin/>
+            <FacebookLogin/>
+          </div>
+        </div>
+        <div class="divider-line mx-5">
+          <span class="has_circle--sm item-center">OR</span>
+        </div>
+        <div class="col">
+          <form on:submit={submit} class="form">
+            <div class="form-group">
+              <!-- <label for="exampleInputEmail1">Email address</label> -->
+              <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
+                      id="exampleInputEmail1" name="email" aria-describedby="emailHelp"
+                      placeholder="Enter email">
+              <small id="email" class="form-text text-muted">{errors.email.message}</small>
+            </div>
+            <div class="form-group">
+              <!-- <label for="exampleInputPassword1">Password</label> -->
+              <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
+                      name="password" id="exampleInputPassword1"
+                      placeholder="Password">
+              <small id="email" class="form-text text-muted">{errors.password.message}</small>
+            </div>
 
-    <div class="row">
-      <div class="col-sm-6">
-        <FacebookLogin/>
+            <div class="form-group">
+              <!-- <label for="exampleInputPassword1">Confirm Password</label> -->
+              <input type="password" class="form-control {errors.confirm_password.message ? ' is-invalid' : 'valid'}"
+                      name="confirm_password" id="exampleInputPassword1"
+                      placeholder="Confirm Password">
+              <small id="email" class="form-text text-muted">{errors.confirm_password.message}</small>
+            </div>
+
+            <NotificationAlert/>
+
+            <button type="submit" class="btn btn-success">Register</button>
+          </form>
+        </div>
       </div>
-
-      <div class="col-sm-6">
-        <form on:submit={submit}>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
-                   id="exampleInputEmail1" name="email" aria-describedby="emailHelp"
-                   placeholder="Enter email">
-            <small id="email" class="form-text text-muted">{errors.email.message}</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
-                   name="password" id="exampleInputPassword1"
-                   placeholder="Password">
-            <small id="email" class="form-text text-muted">{errors.password.message}</small>
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control {errors.confirm_password.message ? ' is-invalid' : 'valid'}"
-                   name="confirm_password" id="exampleInputPassword1"
-                   placeholder="Confirm Password">
-            <small id="email" class="form-text text-muted">{errors.confirm_password.message}</small>
-          </div>
-
-          <NotificationAlert/>
-
-          <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-      </div>
-
-
     </div>
-
   </div>
 </PublicLayout>

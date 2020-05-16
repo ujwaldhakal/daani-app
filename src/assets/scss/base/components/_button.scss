@@ -1,12 +1,34 @@
+@import '../utils/variables';
+
+.color-random .btn{
+    color: red;
+}
+.color{
+    &-random{
+        .btn{
+            color: red;
+            &:nth-child(2){
+                background-color: red;
+
+            }
+        }
+    }
+}
+
 .btn{
     &-style{
         &-1{
             background-color: transparent !important;
             box-shadow: none;
             border: none;
+            cursor: pointer;
+            &:focus{
+                outline: none;
+            }
         }
     }
     &-link{
         color: green !important;
     }
 }
+

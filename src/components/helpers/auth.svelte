@@ -11,7 +11,7 @@
   onMount(async () => {
 
     console.log($page.path.includes('register'));
-    if (!getLocalStorageItem('access_token') && !$page.path.includes('register')) {
+    if (!getLocalStorageItem('access_token') && !$page.path.includes('register') && !$page.path.includes('/')) {
         goto('/login')
         return
     }

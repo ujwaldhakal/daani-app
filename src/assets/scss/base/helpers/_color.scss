@@ -1,0 +1,12 @@
+@import './utils/variables';
+
+.color{
+    &-random{
+        .btn{
+            &:nth-child(2){
+                background-color: $color-red;
+
+            }
+        }
+    }
+}

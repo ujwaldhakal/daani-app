@@ -2,7 +2,7 @@
   import PublicLayout from './../layout/public.svelte'
   import Spinner from './../components/utils/loader/spinner.svelte'
   import {setLocalStorageItem} from './../services/storage'
-  import {login, loginWithFacebook} from './../entity/auth'
+  import {login, requestEmailVerificationLink} from './../entity/auth'
   import {goto} from '@sapper/app';
   import Auth from './../components/helpers/auth.svelte'
   import FacebookLogin from './../components/login/facebook.svelte'
@@ -25,6 +25,9 @@
 
   let errors = initialErrorState;
   let buttonLoader = false;
+  let email;
+  let password;
+  let showRequestVerificationLink = false;
 
   function resetError() {
     errors = initialErrorState
@@ -32,11 +35,10 @@
 
   async function onSubmit(e) {
     buttonLoader = true;
-    e.preventDefault();
-
     resetError();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    e.preventDefault();
+    email = e.target.email.value;
+    password = e.target.password.value;
 
     if (email == '') {
       errors.status = true;
@@ -62,18 +64,44 @@
     }
 
     if (res.error) {
+      if(res.error && res.payload && !res.payload.verified) {
+
+        showRequestVerificationLink = true;
+      }
       NOTIFICATION.update(() => {
         return {
           type: ERROR,
           message: res.error
         }
       })
+
+
     }
 
     buttonLoader = false;
 
   }
 
+
+  const requestVerificationLink = async ()  => {
+
+    const res = await requestEmailVerificationLink(email);
+
+    let actionType = ERROR
+    let message = 'Please email us @ support.com';
+    if(res) {
+      actionType = SUCCESS
+      message  = 'Please check your inbox for verification email';
+    }
+
+    NOTIFICATION.update(() => {
+      return {
+        type: actionType,
+        message: message
+      }
+    })
+    console.log("requsting link",res);
+  }
 
 </script>
 <Auth/>
@@ -93,16 +121,17 @@
                id="exampleInputPassword1" placeholder="Password" name="password">
         <small id="password" class="form-text text-muted">{errors.password.message}</small>
       </div>
-
       <NotificationAlert/>
-
+      {#if showRequestVerificationLink}
+      <div class="request-verification">
+        <span>You can re-generate email link from</span>
+        <button on:click={requestVerificationLink}>here</button>
+      </div>
+        {/if}
       <Spinner visibility={buttonLoader}/>
       <button type="submit" class="btn btn-primary">Login</button>
-
       OR
-
     </form>
-
     <FacebookLogin/>
 
   </div>

@@ -22,7 +22,7 @@ async function login(email, password) {
 
     if (res.errors && res.errors[0]) {
 
-      return {error: res.errors[0].message}
+      return {error: res.errors[0].message, payload : res.errors[0].extensions}
     }
 
     return false;
@@ -108,9 +108,63 @@ async function register(email, password) {
     return defaultErrorResponse;
 
   }
+
 }
 
-export {login, loginWithFacebook, register}
+async function verifyRegistrationToken(token) {
+  const schema = gql`
+    mutation verifyRegistration($token: String!){
+      verifyRegistration(token: $token) {
+        id
+      }
+    }
+  `;
+
+  try {
+    const res = await mutate(schema,{
+      token : token
+    });
+
+    console.log("checking shit",res);
+    if(res && res.data && res.data.verifyRegistration && res.data.verifyRegistration.id)
+    {
+      return true;
+    }
+    return false;
+  } catch (e) {
+
+    return false
+    console.log("error",e);
+  }
+
+}
+
+
+async function requestEmailVerificationLink(email) {
+
+  const schema = gql`
+    mutation requestEmailVerificationLink($email: String!){
+      requestEmailVerificationLink(email: $email)
+    }
+  `;
+
+  try {
+    const res = await mutate(schema,{
+      email : email
+    });
+
+    if(!res.errors) {
+      return res.data.requestEmailVerificationLink;
+    }
+
+  } catch (e) {
+
+    console.log("error",e);
+  }
+
+}
+
+export {login, loginWithFacebook, register, verifyRegistrationToken,requestEmailVerificationLink}
 
 
 

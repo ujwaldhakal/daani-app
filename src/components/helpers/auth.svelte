@@ -35,7 +35,7 @@
 
     } catch (e) {
 
-      console.log("adn its og", e);
+      console.log("error", e);
     }
 
   });

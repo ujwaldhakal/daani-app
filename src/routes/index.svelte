@@ -8,6 +8,7 @@
   import {onMount} from 'svelte';
   import ProductBox from './../components/dashboard/products/single-box.svelte'
   import PublicLayout from './../layout/public.svelte'
+  import Loader from './../components/utils/loader/general.svelte'
 
   let currentPage = 1
   let filter = {
@@ -104,6 +105,7 @@
     {#if products.length == 0}
     <div class="loader text-center w-100">
       <img src="../assets/img/icons/loader.gif">
+      Please wait while we load products
     </div>
     {/if}
     {#if paginator &&  currentPage < paginator.lastPage }

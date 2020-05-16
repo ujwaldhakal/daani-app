@@ -18,6 +18,7 @@
 </script>
 
 
+
 <style lang="scss">
   // @import '../assets/scss/base/main';
   @import '../assets/scss/base/components/navbar';
@@ -29,7 +30,7 @@
           aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/login">LOGO</a>
+  <a class="navbar-brand" href="/">LOGO</a>
 <div class="d-inline">
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 

@@ -3,12 +3,12 @@
 </script>
 <style lang="scss">
   $color-background: #eaecfa;
-  $color-loader: #ce4233;
+  $color-loader: #159932;
   body {
     background: $color-background;
   }
 
-  .loader {
+  .text-loader {
     width: auto;
     height: 50px;
     line-height: 50px;
@@ -50,4 +50,4 @@
 
 </style>
 
-<div class="loader">{label ? label : 'Loading...'}</div>
+<div class="text-loader">{label ? label : 'Loading...'}</div>

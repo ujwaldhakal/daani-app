@@ -13,7 +13,6 @@
 
     const res = await verifyRegistrationToken(token);
 
-    console.log("oylo",res);
     if(!res) {
       label = 'Invalid token!';
     }

@@ -9,6 +9,7 @@
   import {CURRENT_USER} from './../services/store'
   import {USER_FIELDS} from './../entity/user'
   import Sidebar from './../components/dashboard/sidebar.svelte'
+  import Auth from './../components/helpers/auth.svelte'
 
   let AuthRedirectHandler;
 
@@ -31,6 +32,7 @@
 <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
 <link href="/assets/css/nucleo.css" rel="stylesheet">
 <svelte:component this={AuthRedirectHandler}/>
+<Auth/>
 
 {#if currentUser.id}
 

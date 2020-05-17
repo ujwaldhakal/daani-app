@@ -61,12 +61,12 @@
 
     if (res && res.api_token) {
       setLocalStorageItem('access_token', res.api_token)
-      goto('dashboard/welcome')
+      window.location = window.location.origin + '/dashboard/welcome'
+      return
     }
 
     if (res.error) {
-      if(res.error && res.payload && !res.payload.verified) {
-
+      if(res.error && res.payload && res.payload.verified !== undefined && !res.payload.verified) {
         showRequestVerificationLink = true;
       }
       NOTIFICATION.update(() => {
@@ -104,6 +104,11 @@
     console.log("requsting link",res);
   }
 
+  const requestPasswordResetLink = () => {
+
+    console.log("need to request password link");
+  }
+
 </script>
 <Auth/>
 <PublicLayout>
@@ -133,6 +138,7 @@
         <Spinner visibility={buttonLoader}/>
           <button type="submit" class="btn btn-success">Login</button> or
           <FacebookLogin/>
+          <a href="/forgot-password">Forgot Password</a>
       </form>
     </div>
   </div>

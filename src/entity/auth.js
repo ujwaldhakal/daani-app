@@ -157,6 +157,8 @@ async function requestEmailVerificationLink(email) {
       return res.data.requestEmailVerificationLink;
     }
 
+    return false;
+
   } catch (e) {
 
     console.log("error",e);
@@ -164,7 +166,85 @@ async function requestEmailVerificationLink(email) {
 
 }
 
-export {login, loginWithFacebook, register, verifyRegistrationToken,requestEmailVerificationLink}
+async function validateResetToken(token) {
+
+  const schema = gql`
+    mutation validateResetToken($token: String!){
+      validateResetToken(token: $token)
+    }
+  `;
+
+  try {
+    const res = await mutate(schema,{
+      token : token
+    });
+
+    if(!res.errors) {
+      return res.data.validateResetToken;
+    }
+
+  } catch (e) {
+
+    console.log("error",e);
+  }
+
+}
+
+
+async function resetPassword(token,password) {
+
+  const schema = gql`
+    mutation resetPassword($token: String!,$password: String!){
+      resetPassword(token: $token, password: $password)
+    }
+  `;
+
+  try {
+
+    const res = await mutate(schema,{ token : token, password: password});
+
+    if(!res.errors) {
+      return res.data.resetPassword;
+    }
+  } catch (e) {
+
+    console.log(e);
+    return false;
+
+  }
+
+}
+
+async function forgotPassword(email) {
+
+  const schema = gql`
+    mutation forgotPassword($email: String!){
+      forgotPassword(email: $email)
+    }
+  `;
+
+  try {
+
+    const res = await mutate(schema,{email: email});
+
+    if(!res.errors) {
+      return res.data.forgotPassword;
+    }
+    return false;
+  } catch (e) {
+
+    console.log(e);
+    return false;
+
+  }
+
+}
+
+
+
+export {login, loginWithFacebook, register,
+  verifyRegistrationToken,requestEmailVerificationLink,
+  validateResetToken,resetPassword,forgotPassword}
 
 
 

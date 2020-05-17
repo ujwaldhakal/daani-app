@@ -10,8 +10,10 @@
 
   onMount(async () => {
 
-    console.log($page.path.includes('register'));
-    if (!getLocalStorageItem('access_token') && !$page.path.includes('register') && !$page.path.includes('/')) {
+
+    console.log($page);
+    if (!getLocalStorageItem('access_token') && !$page.path.includes('register')
+            && $page.path !== '/' && !$page.path.includes('reset-password') && !$page.path.includes('forgot-password')) {
         goto('/login')
         return
     }
@@ -21,17 +23,22 @@
 
       if (res.data && res.data.me) {
 
-        console.log("should update", res.data.me)
         CURRENT_USER.update(() => {
           return res.data.me;
         });
 
         if($page.path && ($page.path.includes('register') ||$page.path.includes('login'))) {
           goto('/dashboard/welcome')
+          return;
         }
       }
 
-
+      if (res.data && !res.data.me) {
+        if ($page.path && (!$page.path.includes('register') && !$page.path.includes('login') && $page.path !== '/') && !$page.path.includes('reset-password')
+        && !$page.path.includes('forgot-password')) {
+          goto('/login')
+        }
+      }
 
     } catch (e) {
 

@@ -81,44 +81,46 @@
   }
 </style>
 
-<PublicLayout>
-<div class="top-header">
-  <div class="container">
-    <div class="centered pt-5">
-      <h1 class="title-1 pb-3">
-        One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
-      </h1>
-      <div class="search-box d-flex justify-content-around radius-100">
-        <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
-        <input type="text" placeholder="Where">
-        <button on:click={search} class="btn-link btn-style-1">Search</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-
-  <div class="latest-products row my-5">
-      {#each products as product}
-          <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
-      {/each}
-
-    {#if products.length == 0}
-    <div class="loader text-center w-100">
-      <img src="../assets/img/icons/loader.gif">
-      Please wait while we load products
-    </div>
-    {/if}
-    {#if paginator &&  currentPage < paginator.lastPage }
-      <div class="col-md-12">
-        <div class="text-center">
-          <button class="radius-100 btn btn-success" on:click={loadMore}>Load More</button>
+<div>
+  <div class="top-header">
+    <Header/>
+    <div class="container">
+      <div class="centered pt-5">
+        <h1 class="title-1 pb-3">
+          One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
+        </h1>
+        <div class="search-box d-flex justify-content-around radius-100">
+          <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
+          <input type="text" placeholder="Where">
+          <button on:click={search} class="btn-link btn-style-1">Search</button>
         </div>
       </div>
-    {/if}
-
+    </div>
   </div>
+  <div class="container">
+
+    <div class="latest-products row my-5">
+      {#each products as product}
+        <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
+      {/each}
+
+      {#if products.length == 0}
+        <div class="loader text-center w-100">
+          <img src="../assets/img/icons/loader.gif">
+          Please wait while we load products
+        </div>
+      {/if}
+      {#if paginator &&  currentPage < paginator.lastPage }
+        <div class="col-md-12">
+          <div class="text-center">
+            <button class="radius-100 btn btn-success" on:click={loadMore}>Load More</button>
+          </div>
+        </div>
+      {/if}
+
+    </div>
+  </div>
+  <Footer/>
 </div>
-</PublicLayout>
 
 

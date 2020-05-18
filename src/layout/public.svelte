@@ -9,8 +9,8 @@
   @import '../assets/scss/base/main';
 </style>
 
-
-<Header/>
-<slot></slot>
-<Footer/>
-
+<div>
+  <Header/>
+  <slot></slot>
+  <Footer/>
+</div>

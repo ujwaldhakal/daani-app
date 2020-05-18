@@ -100,16 +100,15 @@
 </div>
 <div class="container">
   <div class="latest-products row my-5">
-      {#each products as product}
-          <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
-      {/each}
+    {#if products.length > 0}
+    {#each products as product}
+        <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
+    {/each}
+    {/if}
     {#if products.length == 0}
     <div class="loader text-center w-100">
       <img src="../assets/img/icons/loader.gif">
-<<<<<<< HEAD
-=======
       Please wait while we load products
->>>>>>> 48b2b034c2edb6129eb162be5afa79c8f65d53da
     </div>
     {/if}
     {#if paginator &&  currentPage < paginator.lastPage }

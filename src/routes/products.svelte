@@ -27,6 +27,12 @@
             <li><a href="#">Mobile & accessories</a></li>
             <li><a href="#">Real Estate</a></li>
           </ul>
+          <form>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <button type="submit" class="btn btn-default radius-0">Submit</button>
+            </div>
+          </form>
         </aside>
       </div>
       <div class="col-md-8 col-sm-12">

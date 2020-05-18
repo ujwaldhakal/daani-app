@@ -81,9 +81,8 @@
   }
 </style>
 
-
+<PublicLayout>
 <div class="top-header">
-  <Header/>
   <div class="container">
     <div class="centered pt-5">
       <h1 class="title-1 pb-3">
@@ -98,10 +97,12 @@
   </div>
 </div>
 <div class="container">
+
   <div class="latest-products row my-5">
       {#each products as product}
           <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
       {/each}
+
     {#if products.length == 0}
     <div class="loader text-center w-100">
       <img src="../assets/img/icons/loader.gif">
@@ -117,8 +118,7 @@
     {/if}
 
   </div>
-  <Footer/>
 </div>
-
+</PublicLayout>
 
 

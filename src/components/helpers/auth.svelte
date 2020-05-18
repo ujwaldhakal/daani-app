@@ -14,7 +14,7 @@
     console.log($page);
     if (!getLocalStorageItem('access_token') && !$page.path.includes('register')
             && $page.path !== '/' && !$page.path.includes('reset-password') &&
-            !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('products')) {
+            !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('product')) {
         goto('/login')
         return
     }
@@ -36,7 +36,7 @@
 
       if (res.data && !res.data.me) {
         if ($page.path && (!$page.path.includes('register') && !$page.path.includes('login') && $page.path !== '/') && !$page.path.includes('reset-password')
-        && !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('products')) {
+        && !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('product')) {
           goto('/login')
         }
       }

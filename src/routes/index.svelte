@@ -28,6 +28,7 @@
       let res = await loadAllPublicProducts(currentPage, filter);
       if (!res.errors) {
         products = products.concat(res.data);
+        console.log('data', this.products)
         paginator = res.paginatorInfo
       }
 
@@ -81,8 +82,9 @@
   }
 </style>
 
-<PublicLayout>
+
 <div class="top-header">
+  <Header/>
   <div class="container">
     <div class="centered pt-5">
       <h1 class="title-1 pb-3">
@@ -97,16 +99,17 @@
   </div>
 </div>
 <div class="container">
-
   <div class="latest-products row my-5">
       {#each products as product}
           <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
       {/each}
-
     {#if products.length == 0}
     <div class="loader text-center w-100">
       <img src="../assets/img/icons/loader.gif">
+<<<<<<< HEAD
+=======
       Please wait while we load products
+>>>>>>> 48b2b034c2edb6129eb162be5afa79c8f65d53da
     </div>
     {/if}
     {#if paginator &&  currentPage < paginator.lastPage }
@@ -118,7 +121,8 @@
     {/if}
 
   </div>
+  <Footer/>
 </div>
-</PublicLayout>
+
 
 

@@ -91,7 +91,7 @@
       </h1>
       <div class="search-box d-flex justify-content-around radius-100">
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
-        <input type="text" placeholder="Where">
+<!--        <input type="text" placeholder="Where">-->
         <button on:click={search} class="btn-link btn-style-1">Search</button>
       </div>
     </div>

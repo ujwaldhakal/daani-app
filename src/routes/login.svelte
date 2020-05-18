@@ -112,18 +112,23 @@
 </script>
 <Auth/>
 <PublicLayout>
-  <div class="container centered main-body pt-3">
-    <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
-    <div class="card-wrapper centered mt-5">
-      <form on:submit={onSubmit} class="form-center">
+  <div class="container centered main-body pt-2">
+    <h1 class="title-2 text-center">Welcome!</h1>
+    <p>Use these awesome forms to login or create new account in your project for free.</p>
+    <div class="card-wrapper centered text-center mt-4">
+      <small class="text-center d-block pb-2">Sign in with</small>
+      <FacebookLogin/>
+      <hr>
+      <span class="text-center">Or sign in with credentials </span>
+      <form on:submit={onSubmit} class="form-center mt-3">
         <div class="form-group">
-          <label for="exampleInputEmail1">Email</label>
+          <!-- <label for="exampleInputEmail1">Email</label> -->
           <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
                 name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
           <small id="email" class="form-text text-muted">{errors.email.message}</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <!-- <label for="exampleInputPassword1">Password</label> -->
           <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
                 id="exampleInputPassword1" placeholder="Password" name="password">
           <small id="password" class="form-text text-muted">{errors.password.message}</small>
@@ -136,9 +141,9 @@
           </div>
         {/if}
         <Spinner visibility={buttonLoader}/>
-          <button type="submit" class="btn btn-success">Login</button> or
-          <FacebookLogin/>
-          <a href="/forgot-password">Forgot Password</a>
+          <button type="submit" class="btn btn-success">Login</button>
+          <!-- <FacebookLogin/> -->
+        <a href="/forgot-password">Forgot Password</a>
       </form>
     </div>
   </div>
@@ -146,4 +151,13 @@
 <style lang="scss">
   @import '../assets/scss/base/main';
   @import '../assets/scss/base/components/form';
+
+  .bg-diagonal{
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#05abe0+50,87e0fd+50 */
+      background: #05abe0; /* Old browsers */
+      background: -moz-linear-gradient(-45deg,  #05abe0 50%, #87e0fd 50%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(-45deg,  #05abe0 50%,#87e0fd 50%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(135deg,  #05abe0 50%,#87e0fd 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05abe0', endColorstr='#87e0fd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
 </style>

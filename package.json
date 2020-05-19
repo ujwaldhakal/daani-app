@@ -13,6 +13,7 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "@beyonk/svelte-carousel": "^2.4.0",
     "@lifeomic/axios-fetch": "^1.4.2",
     "apollo-boost": "^0.4.7",
     "apollo-link-context": "^1.0.19",

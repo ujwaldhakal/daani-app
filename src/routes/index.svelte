@@ -86,7 +86,9 @@
   }
 </style>
 
-
+<svelte:head>
+  <title>Collect Stuffs</title>
+</svelte:head>
 <div class="top-header">
   <Header/>
   <div class="container">

@@ -35,6 +35,11 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+      <li class="nav-item active mr-2">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+
       {#if !currentUser.id}
         <li class="nav-item active mr-2">
           <a class="nav-link" href="/login">Login</a>

@@ -16,7 +16,7 @@
               <li>1.6GHz dual-core intel Core i5 processor</li>
               <li>Turbo Boost up to 2.7GHZ</li>
             </ul>
-            <a rel=prefetch href="product/{slug}" class="btn btn-light">Learn More</a>
+            <a rel=prefetch href="product/{slug}" class="btn btn-light">View Details</a>
           </span>
         </div>
       </div>

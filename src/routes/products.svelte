@@ -30,13 +30,13 @@
           <form>
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search">
-              <button type="submit" class="btn btn-default radius-0">Submit</button>
+              <button type="submit" class="btn btn-success radius-0">Submit</button>
             </div>
           </form>
         </aside>
       </div>
       <div class="col-md-8 col-sm-12">
-        <h4 class="title-4 title-bold bg_border bg_border--grey">Listing Page</h4>
+        <h4 class="title-4 bg_border bg_border--grey">Listing Page</h4>
         <div class="border">
           <ul class="list-style-none list-border">
             <li>
@@ -49,7 +49,7 @@
                   <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
                     literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
                     Hampden-Sydney College in Virginia, looked up one os</p>
-                  <button class="btn btn-success btn-sm">See Details</button>
+                  <button class="btn btn-outline-success btn-sm">See Details</button>
                 </div>
               </div>
 
@@ -63,7 +63,7 @@
                   <h5 class="mt-0 title-5 title-bold">iPhone X</h5>
                   <p class="title-sm">Random text. It has roots in a piece of classical Latin literature from 45 BC,
                     making it over 2000 years old.</p>
-                  <button class="btn btn-success btn-sm">See Details</button>
+                  <button class="btn btn-outline-success btn-sm">See Details</button>
                 </div>
               </div>
             </li>
@@ -77,7 +77,7 @@
                   <p class="title-sm">It has roots in a piece of classical Latin literature from 45 BC, making it over
                     2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked
                     up one os</p>
-                  <button class="btn btn-success btn-sm">See Details</button>
+                  <button class="btn btn-outline-success btn-sm">See Details</button>
                 </div>
               </div>
 
@@ -92,13 +92,13 @@
                   <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
                     literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
                     Hampden-Sydney College in Virginia, looked up one os</p>
-                  <button class="btn btn-success btn-sm">See Details</button>
+                  <button class="btn btn-outline-success btn-sm">See Details</button>
                 </div>
               </div>
             </li>
           </ul>
           <div class="text-center">
-            <!-- <button class="btn btn-success">Load More</button> -->
+            <!-- <button class="btn btn-outline-success">Load More</button> -->
             <nav aria-label="..." class="d-inline-block">
               <ul class="pagination">
                 <li class="page-item disabled">

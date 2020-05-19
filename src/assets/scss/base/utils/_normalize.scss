@@ -75,9 +75,9 @@ body {
 .bg{
     &_border{
         color: white;
-        padding: 15px;
+        padding: 10px 15px;
         &--grey{
-            background-color: rgba($color-grey-dark, 0.8);
+            background-color: rgba(black, 0.4);
         }
     }
 

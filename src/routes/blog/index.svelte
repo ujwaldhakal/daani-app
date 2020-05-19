@@ -20,7 +20,7 @@
 </style>
 
 <svelte:head>
-	<title>Blog</title>
+	<title>Produ</title>
 </svelte:head>
 <div class="container">
 

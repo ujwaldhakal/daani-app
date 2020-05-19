@@ -56,26 +56,31 @@
 <style lang="scss">
   @import '../assets/scss/base/main';
   @import '../../src/assets/scss/base/components/header';
-  .search-box{
+
+  .search-box {
     background-color: white;
-    padding:15px;
+    padding: 15px;
     border: 6px solid green;
-    input{
+
+    input {
       min-width: 150px;
       border: none;
       border-bottom: 1px solid #cacaca;
-      &:focus{
+
+      &:focus {
         border-bottom: 1px solid $color-primary !important;
 
       }
     }
   }
-  .footer{
+
+  .footer {
     color: grey;
     font-size: 11px;
     border-top: 1px solid grey;
     padding: 25px;
-    span{
+
+    span {
       color: blue;
     }
   }
@@ -91,7 +96,7 @@
       </h1>
       <div class="search-box d-flex justify-content-around radius-100">
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
-        <input type="text" placeholder="Where">
+        <!--        <input type="text" placeholder="Where">-->
         <button on:click={search} class="btn-link btn-style-1">Search</button>
       </div>
     </div>
@@ -99,14 +104,14 @@
 </div>
 <div class="container">
   <div class="latest-products row my-5">
-      {#each products as product}
-          <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
-      {/each}
+    {#each products as product}
+      <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
+    {/each}
     {#if products.length == 0}
-    <div class="loader text-center w-100">
-      <img src="../assets/img/icons/loader.gif">
-      Please wait while we load products
-    </div>
+      <div class="loader text-center w-100">
+        <img src="../assets/img/icons/loader.gif">
+        Please wait while we load products
+      </div>
     {/if}
     {#if paginator &&  currentPage < paginator.lastPage }
       <div class="col-md-12">

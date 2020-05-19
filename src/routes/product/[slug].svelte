@@ -7,6 +7,7 @@
 
   const {page} = stores();
   import {onMount} from 'svelte';
+  import Carousel from '@beyonk/svelte-carousel'
 
   let slug = $page.params.slug;
   let filter = {
@@ -44,9 +45,20 @@
     {#if product.id}
       <div class="row py-5">
         <div class="col-md-8 col-sm-12">
-          <figure class="banner-product">
-            <img src="../assets/img/product-img.jpg" alt="Banner">
-          </figure>
+          <Carousel perPage={{ 800: 1, 500: 1 }} autoplay={5000}>
+            <div class="slide-content">
+              <img src="//placekitten.com/600" alt="Kitten 1"/>
+            </div>
+            <div class="slide-content">
+              <img src="//placekitten.com/601" alt="Kitten 1"/>
+            </div>
+            <div class="slide-content">
+              <img src="//placekitten.com/602" alt="Kitten 1"/>
+            </div>
+            <div class="slide-content">
+              <img src="//placekitten.com/603" alt="Kitten 1"/>
+            </div>
+          </Carousel>
           <div class="product-detail border-2 p-3 mb-3">
             <h4 class="title-4">Description</h4>
             {product.description}

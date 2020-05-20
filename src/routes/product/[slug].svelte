@@ -46,18 +46,11 @@
       <div class="row py-5">
         <div class="col-md-8 col-sm-12">
           <Carousel perPage={{ 800: 1, 500: 1 }} autoplay={5000}>
+            {#each product.media as media}
             <div class="slide-content">
-              <img src="//placekitten.com/600" alt="Kitten 1"/>
+              <img src="{media.path}" alt="Kitten 1"/>
             </div>
-            <div class="slide-content">
-              <img src="//placekitten.com/601" alt="Kitten 1"/>
-            </div>
-            <div class="slide-content">
-              <img src="//placekitten.com/602" alt="Kitten 1"/>
-            </div>
-            <div class="slide-content">
-              <img src="//placekitten.com/603" alt="Kitten 1"/>
-            </div>
+              {/each}
           </Carousel>
           <div class="product-detail border-2 p-3 mb-3">
             <h4 class="title-4">Description</h4>

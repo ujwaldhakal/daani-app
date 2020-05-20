@@ -44,6 +44,9 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Search form -->
+          <div class="navbar-search navbar-search-light form-inline mr-sm-3">
+            <a href="/" style="color:white">Go to Home Page</a>
+          </div>
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
               <!-- Sidenav toggler -->
@@ -62,6 +65,7 @@
               </a>
             </li>
           </ul>
+
           <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="/" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -101,6 +105,7 @@
               </div>
             </li>
           </ul>
+
         </div>
       </div>
     </nav>

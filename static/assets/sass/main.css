@@ -57,6 +57,11 @@ img{
     width: 80%;
 }
 
+/* icon img */
+.icon svg{
+    width: 30px;
+}
+
 /* main-body */
 .main-body{
     min-height: 540px;

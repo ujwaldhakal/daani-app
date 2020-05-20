@@ -1,7 +1,9 @@
 <script>
   export let posts;
-  import sidebar from './../components/sidebar.svelte'
+  import Sidebar from './../components/sidebar.svelte'
   import PublicLayout from './../layout/public.svelte'
+  // import CategoryIcon from './../components/utils/icons/category.svelte'
+  
 </script>
 
 <style lang="scss">
@@ -15,28 +17,93 @@
 
 <PublicLayout>
   <div class="container">
-    <sidebar></sidebar>
     <div class="row pt-5">
-      <div class="col-md-4 col-sm-12">
-        <aside class="sidebar bg-white p-3">
-          <h4>Categories</h4>
-          <ul class="list-style-none">
-            <li><a href="#">automobiles</a></li>
-            <li><a href="#">Computer</a></li>
-            <li><a href="#">Electronics</a></li>
-            <li><a href="#">Mobile & accessories</a></li>
-            <li><a href="#">Real Estate</a></li>
-          </ul>
-          <form>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
-              <button type="submit" class="btn btn-success radius-0">Submit</button>
-            </div>
-          </form>
-        </aside>
+      <div class="col-md-3 col-sm-12">
+        <Sidebar></Sidebar>
       </div>
       <div class="col-md-8 col-sm-12">
         <h4 class="title-4 bg_border bg_border--grey">Listing Page</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="border box-wrapper">
+              <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+                <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
+              </figure>
+              <div class="bg-white p-3">
+                <h5 class="mt-0 title-5 title-bold">Jackets</h5>
+                <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old.</p>
+                <button class="btn btn-outline-success btn-sm">See Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border  box-wrapper">
+              <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+                <img src="../assets/img/iphone.jpg" alt="iPhone X" class="block-absolute">
+              </figure>
+              <div class="bg-white p-3">
+                <h5 class="mt-0 title-5 title-bold">Jackets</h5>
+                <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old.</p>
+                <button class="btn btn-outline-success btn-sm">See Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border  box-wrapper">
+              <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+                <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
+              </figure>
+              <div class="bg-white p-3">
+                <h5 class="mt-0 title-5 title-bold">Jackets</h5>
+                <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old.</p>
+                <button class="btn btn-outline-success btn-sm">See Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border box-wrapper">
+              <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+                <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
+              </figure>
+              <div class="bg-white p-3">
+                <h5 class="mt-0 title-5 title-bold">Jackets</h5>
+                <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old.</p>
+                <button class="btn btn-outline-success btn-sm">See Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border  box-wrapper">
+              <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+                <img src="../assets/img/iphone.jpg" alt="iPhone X" class="block-absolute">
+              </figure>
+              <div class="bg-white p-3">
+                <h5 class="mt-0 title-5 title-bold">Jackets</h5>
+                <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old.</p>
+                <button class="btn btn-outline-success btn-sm">See Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border  box-wrapper">
+              <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+                <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
+              </figure>
+              <div class="bg-white p-3">
+                <h5 class="mt-0 title-5 title-bold">Jackets</h5>
+                <p class="title-sm">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old.</p>
+                <button class="btn btn-outline-success btn-sm">See Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- 
         <div class="border">
           <ul class="list-style-none list-border">
             <li>
@@ -98,7 +165,7 @@
             </li>
           </ul>
           <div class="text-center">
-            <!-- <button class="btn btn-outline-success">Load More</button> -->
+
             <nav aria-label="..." class="d-inline-block">
               <ul class="pagination">
                 <li class="page-item disabled">
@@ -115,7 +182,7 @@
               </ul>
             </nav>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

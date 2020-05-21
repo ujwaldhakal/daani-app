@@ -45,6 +45,7 @@
     {#if product.id}
       <div class="row py-5">
         <div class="col-md-8 col-sm-12">
+          {#if product.media.length > 0}
           <Carousel perPage={{ 800: 1, 500: 1 }} autoplay={5000}>
             {#each product.media as media}
             <div class="slide-content">
@@ -52,6 +53,7 @@
             </div>
               {/each}
           </Carousel>
+            {/if}
           <div class="product-detail border-2 p-3 mb-3">
             <h4 class="title-4">Description</h4>
             {product.description}

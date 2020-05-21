@@ -1,5 +1,6 @@
 <script>
   export let details
+  export let layout
 
   let featuredImage = false;
 
@@ -15,6 +16,25 @@
   @import '../../../assets/scss/base/main';
 </style>
 
+{#if layout === 'products-list'}
+<div class="col-md-4">
+  <div class="border box-wrapper">
+    <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+      <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
+    </figure>
+    <div class="bg-white p-3">
+      <h5 class="mt-0 title-5 title-bold">{details.name}</h5>
+      <p class="title-sm">
+        {details.description}
+      </p>
+      <a class="btn btn-outline-success btn-sm" href="product/{details.slug}">See Details</a>
+    </div>
+  </div>
+</div>
+{/if}
+
+
+{#if layout === 'home'}
 <div class="col-md-4">
       <div class="box-wrapper" style="background-image:url('{featuredImage}'); background-size:cover">
         <div class="hover-content d-flex align-items-end p-3">
@@ -25,3 +45,4 @@
         </div>
       </div>
 </div>
+{/if}

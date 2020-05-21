@@ -9,7 +9,7 @@
   @import '../assets/scss/base/main';
 </style>
 
-<div class="container-fluid">
+<div>
   <Header/>
   <slot></slot>
   <Footer/>

@@ -16,11 +16,10 @@
 		margin: 0 0 1em 0;
 		line-height: 1.5;
 	}
-	@import '../../assets/scss/base/common';
 </style>
 
 <svelte:head>
-	<title>Produ</title>
+	<title>Blog</title>
 </svelte:head>
 <div class="container">
 

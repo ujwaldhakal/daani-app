@@ -7,43 +7,53 @@
   import DashboardLayout from '../../../layout/dashboard.svelte'
   import NotificationAlert from './../../../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../../../services/store'
-
-  let errors = {
-    status: false,
-    name: {
-      message: '',
-    },
-    catId: {
-      message: '',
-    },
-    coverPicId: {
-      message: '',
-    },
-    galleryIds: {
-      message: '',
-    },
-    description: {
-      message: '',
-    }
-  }
+  import Spinner from './../../../components/utils/loader/spinner.svelte'
 
   let galleryPreviews = {};
+  let formData;
+  let errors;
+  let loader = false;
 
-  let initialFormData = {
-    name: '',
-    categories: [],
-    subCategories: [],
-    subCatId: 0,
-    catId: 0,
-    coverImagePreview: '',
-    coverPicId: 0,
-    galleryIds: 0,
-    coverPic: 0,
+  function initializeInitialErrors() {
+     errors = JSON.parse(JSON.stringify({
+      status: false,
+      name: {
+        message: '',
+      },
+      catId: {
+        message: '',
+      },
+      coverPicId: {
+        message: '',
+      },
+      galleryIds: {
+        message: '',
+      },
+      description: {
+        message: '',
+      }
+    }));
+  }
+  initializeInitialErrors();
 
 
-  };
+  function initializeInitialFormData() {
+    formData = JSON.parse(JSON.stringify({
+      name: '',
+      categories: [],
+      subCategories: [],
+      subCatId: 0,
+      catId: 0,
+      coverImagePreview: '',
+      coverPicId: 0,
+      description:'',
+      galleryIds: 0,
+      coverPic: 0,
 
-  let formData = initialFormData
+    }));
+  }
+
+  initializeInitialFormData();
 
 
   onMount(async () => {
@@ -55,9 +65,6 @@
     formData.categories = res;
   })
 
-  function resetForm() {
-    formData = initialFormData;
-  }
 
   function selectCategory(e) {
 
@@ -116,8 +123,6 @@
       if (res.data.status === "success") {
         galleryPreviews = res.data.data
         formData.galleryIds = Object.keys(galleryPreviews).toString();
-
-        console.log("okn now", formData.galleryIds)
       }
 
 
@@ -168,9 +173,8 @@
   }
 
   async function submit(e) {
-
-    errors.status = false;
-    console.log(formData);
+    loader = true;
+    initializeInitialErrors();
     e.preventDefault();
 
     if (e.target.name.value == '') {
@@ -195,12 +199,13 @@
     }
 
     if (errors.status) {
+      loader = false;
       return true;
     }
 
 
     const res = await add(formData);
-
+    loader = false;
     NOTIFICATION.update(() => {
       return {
         type: res.error ? ERROR : SUCCESS,
@@ -208,7 +213,7 @@
       }
     })
 
-    resetForm();
+    initializeInitialFormData();
 
   }
 
@@ -242,7 +247,7 @@
           </div>
         </div>
         <div class="card-body">
-          <NotificationAlert/>
+
           <div class="bg-secondary p-1">
             <label for="exampleFormControlInput1">Product Name</label>
             <input type="text"
@@ -322,7 +327,8 @@
             </div>
 
           </div>
-
+          <NotificationAlert/>
+          <Spinner visibility={loader}/>
           <button type="submit" class="btn btn-primary">Submit</button>
 
         </div>

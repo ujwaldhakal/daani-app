@@ -10,33 +10,33 @@
   import NotificationAlert from './../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
 
-  let initialErrorState = {
-    status: false,
-    email: {
-      message: ''
-    },
-    password: {
-      message: ''
-    },
-    auth: {
-      message: false
-    }
-  };
+  let errors;
 
+  initializeLocalState();
 
-  let errors = initialErrorState;
   let buttonLoader = false;
   let email;
   let password;
   let showRequestVerificationLink = false;
 
-  function resetError() {
-    errors = initialErrorState
+  function initializeLocalState() {
+    errors = JSON.parse(JSON.stringify({
+      status: false,
+      email: {
+        message: ''
+      },
+      password: {
+        message: ''
+      },
+      auth: {
+        message: false
+      }
+    }));
   }
 
   async function onSubmit(e) {
     buttonLoader = true;
-    resetError();
+    initializeLocalState();
     e.preventDefault();
     email = e.target.email.value;
     password = e.target.password.value;
@@ -51,9 +51,10 @@
       errors.password.message = "Please fill your password !"
     }
 
+    console.log("upto here",{email : errors});
     if (errors.status) {
       buttonLoader = false;
-      return true
+      return;
     }
 
 

@@ -108,7 +108,7 @@
 <div class="container">
   <div class="latest-products row my-5">
     {#each products as product}
-      <ProductBox details={product} />
+      <ProductBox details={product} layout="home"/>
     {/each}
     {#if products.length == 0}
       <div class="loader text-center w-100">

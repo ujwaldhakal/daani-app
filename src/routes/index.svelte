@@ -98,7 +98,7 @@
       <div class="search-box d-md-flex justify-content-around radius-md-100">
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
         <!--        <input type="text" placeholder="Where">-->
-        <button on:click={search} class="btn-link btn-style-1">Search</button>
+        <button on:click={search} class="btn-link btn-style-1 btn-mbl">Search</button>
       </div>
     </div>
   </div>

@@ -104,9 +104,9 @@
   <div class="container main-body pt-3">
    <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
     <div class="card-wrapper mt-5 w-80">
-      <div class="row">
+      <div class="d-md-flex">
         <div class="col align-right">
-          <div class="d-flex color-random  flex-column justify-content-center align-items-end h-100">
+          <div class="d-flex color-random  flex-column justify-content-center align-items-md-end h-100">
             <FacebookLogin/>
             <FacebookLogin/>
             <FacebookLogin/>

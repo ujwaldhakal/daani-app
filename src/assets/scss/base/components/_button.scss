@@ -1,4 +1,5 @@
 @import '../utils/variables';
+@import '../helpers/_mediaqueries';
 
 .color-random .btn{
     color: red;
@@ -29,6 +30,15 @@
     }
     &-link{
         color: green !important;
+    }
+    &-mbl{
+        @include mobile{
+            border: 2px solid $color-primary;
+            margin-top: 15px;
+            padding: 4px;
+            width: 100%;
+        }
+
     }
 }
 

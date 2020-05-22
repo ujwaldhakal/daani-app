@@ -1,4 +1,5 @@
 @import 'variables';
+@import '../helpers/_mediaqueries';
 
 body {
     background-color: white;
@@ -6,7 +7,10 @@ body {
 }
 
 .centered{
-    max-width: 650px;
+    max-width: 100%;
+    @include tablet{
+        max-width: 650px;
+    }
 }
 
 .top{
@@ -16,6 +20,14 @@ body {
     }
 }
 .radius{
+    &-md{
+        &-100{
+            @include tablet{
+                border-radius: 100px;
+            }
+
+        }
+    }
     &-100{
         border-radius: 100px;
     }

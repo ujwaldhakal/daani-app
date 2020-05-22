@@ -18,13 +18,13 @@
 <PublicLayout>
   <div class="container">
     <div class="row pt-5">
-      <div class="col-md-3 col-sm-12">
+      <div class="col-md-4 col-sm-12">
         <Sidebar></Sidebar>
       </div>
       <div class="col-md-8 col-sm-12">
         <h4 class="title-4 bg_border bg_border--grey">Listing Page</h4>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-lg-4 col-sm-6">
             <div class="border box-wrapper">
               <figure class="img-wrap img-wrap-150 mr-3 mb-0">
                 <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 col-sm-6">
             <div class="border  box-wrapper">
               <figure class="img-wrap img-wrap-150 mr-3 mb-0">
                 <img src="../assets/img/iphone.jpg" alt="iPhone X" class="block-absolute">
@@ -50,7 +50,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 col-sm-6">
             <div class="border  box-wrapper">
               <figure class="img-wrap img-wrap-150 mr-3 mb-0">
                 <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
@@ -63,7 +63,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 col-sm-6">
             <div class="border box-wrapper">
               <figure class="img-wrap img-wrap-150 mr-3 mb-0">
                 <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
@@ -76,7 +76,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 col-sm-6">
             <div class="border  box-wrapper">
               <figure class="img-wrap img-wrap-150 mr-3 mb-0">
                 <img src="../assets/img/iphone.jpg" alt="iPhone X" class="block-absolute">
@@ -89,7 +89,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 col-sm-6">
             <div class="border  box-wrapper">
               <figure class="img-wrap img-wrap-150 mr-3 mb-0">
                 <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">

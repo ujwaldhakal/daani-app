@@ -56,21 +56,22 @@
 </script>
 <style lang="scss">
   @import '../assets/scss/base/main';
+  @import '../../src/assets/scss/base/components/search';
   @import '../../src/assets/scss/base/components/header';
-  .search-box{
-    background-color: white;
-    padding:15px;
-    border: 6px solid green;
-    input{
-      min-width: 150px;
-      border: none;
-      border-bottom: 1px solid #cacaca;
-      &:focus{
-        border-bottom: 1px solid $color-primary !important;
+  // .search-box{
+  //   background-color: white;
+  //   padding:15px;
+  //   border: 6px solid green;
+  //   input{
+  //     min-width: 150px;
+  //     border: none;
+  //     border-bottom: 1px solid #cacaca;
+  //     &:focus{
+  //       border-bottom: 1px solid $color-primary !important;
 
-      }
-    }
-  }
+  //     }
+  //   }
+  // }
   .footer{
     color: grey;
     font-size: 11px;
@@ -86,14 +87,14 @@
 <div class="top-header">
   <Header/>
   <div class="container">
-    <div class="centered pt-5">
+    <div class="centered pt-3 pt-md-5">
       <h1 class="title-1 pb-3">
         One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
       </h1>
-      <div class="search-box d-flex justify-content-around radius-100">
+      <div class="search-box d-md-flex justify-content-around radius-md-100">
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
         <input type="text" placeholder="Where">
-        <button on:click={search} class="btn-link btn-style-1">Search</button>
+        <button on:click={search} class="btn-link btn-style-1 btn-mbl">Search</button>
       </div>
     </div>
   </div>

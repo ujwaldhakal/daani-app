@@ -1,6 +1,18 @@
-<!-- <script>
-  import CategoryIcon from './../components/utils/icons/category.svelte'
-</script> -->
+
+<script>
+  import {loadCategories} from './../entity/product'
+  import {onMount} from 'svelte'
+  let categories = [];
+  onMount( async () => {
+
+    try {
+      categories = await loadCategories()
+    } catch (e) {
+      console.log(e);
+    }
+  })
+</script>
+
 <style lang="scss">
   ul {
     margin: 0 0 1em 0;
@@ -15,11 +27,11 @@
 <aside class="sidebar bg-white p-3">
   <h4 class="title-3 mb-3"><span class="color-theme">Categories</span> </h4>
   <ul class="list-style-none list-margin">
-    <li><a href="#">Automobiles <span>(3)</span></a></li>
-    <li><a href="#">Computer <span>(10)</span></a></li>
-    <li><a href="#">Electronics <span>(7)</span></a></li>
-    <li><a href="#">Mobile & accessories <span>(14)</span></a></li>
-    <li><a href="#">Real Estate <span>(2)</span></a></li>
+    {#each categories as category}
+      {#if category.parent_id === 0}
+      <li><a href="#">{category.name} <span>(3)</span></a></li>
+        {/if}
+    {/each}
   </ul>
   <form>
     <div class="input-group">

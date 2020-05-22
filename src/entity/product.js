@@ -190,8 +190,9 @@ async function destroy(id) {
 }
 
 
-async function loadAllPublicProducts(currentPage, filters) {
+async function loadAllPublicProducts(currentPage, filters,fields) {
 
+  const extraFields  = fields !== undefined ? fields : '';
   const schema = gql`
     query products($currentPage: Int,$limit: Int!,$filter : ProductFilter  ){
       products(page:$currentPage,first: $limit, filter: $filter){
@@ -204,6 +205,7 @@ async function loadAllPublicProducts(currentPage, filters) {
           category{
             name
           },
+          ${extraFields},
           media{
             id,
             path,
@@ -329,6 +331,11 @@ async function update(id, formData) {
   } catch (e) {
     return defaultErrorResponse
   }
+}
+
+
+async function productBySlug(){
+
 }
 
 export {loadCategories, add, listProducts, sold, destroy, loadAllPublicProducts, verifyOwnership, update}

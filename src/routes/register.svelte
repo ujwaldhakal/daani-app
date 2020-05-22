@@ -6,41 +6,35 @@
   import NotificationAlert from './../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
   import Auth from './../components/helpers/auth.svelte'
+  let loader = false;
+  let errors;
 
-  let initialErrorState = {
-    status: false,
-    email: {
-      message: ''
-    },
-    password: {
-      message: ''
-    },
-    confirm_password: {
-      message: ''
-    },
-    auth: {
-      message: ''
-    }
-  };
+  function initializeLocalState() {
+    errors = JSON.parse(JSON.stringify({
+      status: false,
+      email: {
+        message: ''
+      },
+      password: {
+        message: ''
+      },
+      confirm_password: {
+        message: ''
+      },
+      auth: {
+        message: ''
+      }
+    }));
 
-
-  let buttonLoader = false;
-
-  let errors = initialErrorState;
-
-
-  function resetError() {
-    errors = initialErrorState
-    errors.email.message = '';
-    errors.password.message = '';
-    errors.confirm_password.message = '';
-    errors.auth.message = '';
   }
+
+  initializeLocalState();
+
 
 
   async function submit(e) {
-
-    resetError();
+    loader = true;
+    initializeLocalState();
     e.preventDefault();
 
     const email = e.target.email.value;
@@ -69,18 +63,19 @@
     }
 
     if (errors.status) {
-      // buttonLoader = false;
+      loader = false;
       return true
     }
 
     let response = await register(email, password);
 
     if (response.error) {
-
+      loader = false;
       NOTIFICATION.update(() => {
         return {type: ERROR, message: response.error}
       })
 
+      loader = false;
       return true;
     }
 
@@ -141,7 +136,7 @@
             </div>
 
             <NotificationAlert/>
-
+            <Spinner visibility={loader}/>
             <button type="submit" class="btn btn-success">Register</button>
           </form>
         </div>

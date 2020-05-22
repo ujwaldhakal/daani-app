@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev -no-hot",
+    "noreload": "sapper dev",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build",
@@ -12,6 +13,7 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "@beyonk/svelte-carousel": "^2.4.0",
     "@lifeomic/axios-fetch": "^1.4.2",
     "apollo-boost": "^0.4.7",
     "apollo-link-context": "^1.0.19",

@@ -103,8 +103,54 @@ body {
             }
         }
     }
+    &-margin{
+        li{
+            margin-bottom: 15px;
+        }
+    }
+    &-border{
+        li{
+            background-color: rgba(white, 0.9);
+            &:not(:last-child){
+                border-bottom: 1px solid rgba($color-grey, 0.8);
+                margin-bottom: 8px;
+            }
+        }
+    }
 }
 
+// background
+.bg{
+    &_border{
+        color: white;
+        padding: 10px 15px;
+        &--grey{
+            background-color: rgba(black, 0.4);
+        }
+    }
+
+}
+// border style
+.border{
+    border: 1px solid rgba($color-grey, 0.8);
+    &-top{
+        border-top: 1px solid rgba($color-grey, 0.8)
+    }
+    &-2{
+        border: 2px solid rgba($color-grey, 1);
+    }
+}
+
+// icon
+.icon-img, svg{
+    width: 30px;
+}
+.icon{
+    color: red;
+    svg{
+        width: 30px;
+    }
+}
 // background
 .bg{
     &_border{

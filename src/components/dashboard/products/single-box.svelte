@@ -1,23 +1,48 @@
 <script>
-  export let name
-  export let slug
+  export let details
+  export let layout
+
+  let featuredImage = false;
+
+  details.media.map((item) => {
+
+    if(item.category === 'cover_image') {
+      featuredImage = item.path;
+    }
+  })
 </script>
 
 <style lang="scss">
   @import '../../../assets/scss/base/main';
 </style>
 
+{#if layout === 'products-list'}
 <div class="col-md-4">
-      <div class="box-wrapper">
+  <div class="border box-wrapper">
+    <figure class="img-wrap img-wrap-150 mr-3 mb-0">
+      <img src="../assets/img/jackets.jpg" alt="Jackets" class="block-absolute">
+    </figure>
+    <div class="bg-white p-3">
+      <h5 class="mt-0 title-5 title-bold">{details.name}</h5>
+      <p class="title-sm">
+        {details.description}
+      </p>
+      <a class="btn btn-outline-success btn-sm" href="product/{details.slug}">See Details</a>
+    </div>
+  </div>
+</div>
+{/if}
+
+
+{#if layout === 'home'}
+<div class="col-md-4">
+      <div class="box-wrapper" style="background-image:url('{featuredImage}'); background-size:cover">
         <div class="hover-content d-flex align-items-end p-3">
-          <span>{name}
-            <ul class="list-style-none title-sm">
-              <li>iMac 21.5-inch</li>
-              <li>1.6GHz dual-core intel Core i5 processor</li>
-              <li>Turbo Boost up to 2.7GHZ</li>
-            </ul>
-            <a rel=prefetch href="product/{slug}" class="btn btn-light">Learn More</a>
+          <span>{details.name}
+            <p>{details.description}</p>
+            <a rel=prefetch href="product/{details.slug}" class="btn btn-light">View Details</a>
           </span>
         </div>
       </div>
 </div>
+{/if}

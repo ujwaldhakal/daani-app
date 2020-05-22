@@ -77,40 +77,42 @@
     font-size: 11px;
     border-top: 1px solid grey;
     padding: 25px;
-    span{
+
+    span {
       color: blue;
     }
   }
 </style>
 
-
+<svelte:head>
+  <title>Collect Stuffs</title>
+  <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
+</svelte:head>
 <div class="top-header">
   <Header/>
   <div class="container">
     <div class="centered pt-3 pt-md-5">
       <h1 class="title-1 pb-3">
-        One man's <span>Trash</span> is <br/>another's man <span class="title-underline title-up">Treasure</span>
+        One person's <span>Trash</span> is <br/>another person's <span class="title-underline title-up">Treasure</span>
       </h1>
       <div class="search-box d-md-flex justify-content-around radius-md-100">
         <input type="text" placeholder="What are you looking" bind:value={searchQuery}>
-        <input type="text" placeholder="Where">
-        <button on:click={search} class="btn-link btn-style-1 btn-mbl">Search</button>
+        <!--        <input type="text" placeholder="Where">-->
+        <button on:click={search} class="btn-link btn-style-1">Search</button>
       </div>
     </div>
   </div>
 </div>
 <div class="container">
   <div class="latest-products row my-5">
-    {#if products.length > 0}
     {#each products as product}
-        <ProductBox name="{product.name}" slug="{product.slug}" className="abc"/>
+      <ProductBox details={product} layout="home"/>
     {/each}
-    {/if}
     {#if products.length == 0}
-    <div class="loader text-center w-100">
-      <img src="../assets/img/icons/loader.gif">
-      Please wait while we load products
-    </div>
+      <div class="loader text-center w-100">
+        <img src="../assets/img/icons/loader.gif">
+        Please wait while we load products
+      </div>
     {/if}
     {#if paginator &&  currentPage < paginator.lastPage }
       <div class="col-md-12">

@@ -6,61 +6,61 @@
   import DashboardLayout from '../../../../layout/dashboard.svelte'
   import NotificationAlert from './../../../../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../../../../services/store'
-  // import {verifyOwnership} from './../../../../entity/product'
+  import Spinner from './../../../../components/utils/loader/spinner.svelte'
 
   const {page} = stores();
 
   const slug = $page.params.slug;
 
-
+  let errors;
   let product = {};
-  let errors = {
-    status: false,
-    name: {
-      message: '',
-    },
-    catId: {
-      message: '',
-    },
-    coverPicId: {
-      message: '',
-    },
-    galleryIds: {
-      message: '',
-    },
-    usedFor: {
-      message: '',
-    },
-    description: {
-      message: '',
-    }
-  }
-
+  let formData;
   let galleryPreviews = {};
+  let loader = false;
 
-  let initialFormData = {
-    name: '',
-    categories: [],
-    subCategories: [],
-    subCatId: 0,
-    catId: 1,
-    coverImagePreview: '',
-    coverPicId: 0,
-    galleryIds: 0,
-    usedFor: '',
-    coverPic: 0,
-
-  };
-
-  let formData = initialFormData
-
-  function resetForm() {
-    formData = initialFormData;
+  function initializeInitialErrors() {
+    errors = JSON.parse(JSON.stringify({
+      status: false,
+      name: {
+        message: '',
+      },
+      catId: {
+        message: '',
+      },
+      coverPicId: {
+        message: '',
+      },
+      galleryIds: {
+        message: '',
+      },
+      usedFor: {
+        message: '',
+      },
+      description: {
+        message: '',
+      }
+    }));
   }
 
-  let id ="1";
-  let value = 1;
+  initializeInitialErrors();
 
+  function initializeInitialFormData() {
+    formData = JSON.parse(JSON.stringify({
+      name: '',
+      categories: [],
+      subCategories: [],
+      subCatId: 0,
+      catId: 1,
+      coverImagePreview: '',
+      coverPicId: 0,
+      galleryIds: 0,
+      usedFor: '',
+      coverPic: 0,
+
+    }));
+  }
+
+  initializeInitialFormData();
 
 
   onMount(async () => {
@@ -116,7 +116,6 @@
       }
     })
 
-    console.log("waht we got ass",processedCategories)
 
     formData.subCategories = processedCategories
   }
@@ -214,8 +213,8 @@
   }
 
   async function submit(e) {
-
-    errors.status = false;
+    loader = true;
+    initializeInitialErrors()
     console.log(formData);
     e.preventDefault();
 
@@ -241,13 +240,13 @@
     }
 
     if (errors.status) {
+      loader = false;
       return true;
     }
 
 
     const res = await update(product.id,formData);
-
-    console.log("geetting thawts",res);
+    loader = false;
 
     NOTIFICATION.update(() => {
       return {
@@ -256,7 +255,7 @@
       }
     })
 
-    resetForm();
+    // initializeInitialFormData();
 
   }
 
@@ -290,7 +289,6 @@
           </div>
         </div>
         <div class="card-body">
-          <NotificationAlert/>
           <div class="bg-secondary p-1">
             <label for="exampleFormControlInput1">Product Name</label>
             <input type="text"
@@ -372,7 +370,8 @@
             </div>
 
           </div>
-
+          <NotificationAlert/>
+          <Spinner visibility={loader}/>
           <button type="submit" class="btn btn-primary">Submit</button>
 
         </div>

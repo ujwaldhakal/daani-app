@@ -1,10 +1,18 @@
+@import 'mediaqueries';
+
 .title{
     &-1{
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: 300;
+        @include tablet{
+            font-size: 3rem;
+        }
         span{
-            font-size: 3.5rem;
+            font-size: 2.1rem;
             font-weight: 600;
+            @include tablet{
+                font-size: 3.5rem;
+            }
 
         }
     }

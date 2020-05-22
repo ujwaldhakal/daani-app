@@ -1,24 +1,42 @@
-// @import '../variables';
+@import '../utils/variables';
+@import '../helpers/_mediaqueries';
+
 .top-header{
     // background-color: rgba($color: #159933, $alpha: 1.0);
     color: white;
-    background-image: url(../../assets/img/header-bg.svg);
-    background-size: 100%;
-    border-bottom-left-radius: 210px;
+    background-image: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: $color-primary;
+    border-bottom-left-radius: 0;
     background-position: 1px 100%;
-    min-height: 350px;
+    min-height: 355px;
     position: relative;
+    @include desktop{
+        background-image: url(../../assets/img/header-bg.svg);
+        border-bottom-left-radius: 210px;
+        background-color: transparent;
+    }
     &::after{
         content: "";
         display: block;
-        background:#159933;
+        background-color: transparent;
         height: 100%;
         width: 101%;
         position: absolute;
+        
         top: -57px;
-        border-bottom-left-radius: 383px;
+        border-bottom-left-radius: 0;
         z-index: -1;
         left: -28px;
+        @include tablet{
+            border-bottom-left-radius: 325px;
+
+        }
+        @include desktop{
+            background-color: $color-primary;
+
+        }
     }
 
 }

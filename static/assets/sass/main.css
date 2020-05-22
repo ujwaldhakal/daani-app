@@ -21,6 +21,11 @@ input:focus{
 /* image */
 img{
     max-width: 100%;
+    width: 100%
+}
+
+.slide-content{
+    width: 100%;
 }
 .img-wrap{
     background-size: cover;

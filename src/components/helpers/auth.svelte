@@ -11,7 +11,6 @@
   onMount(async () => {
 
 
-    console.log($page);
     if (!getLocalStorageItem('access_token') && !$page.path.includes('register')
             && $page.path !== '/' && !$page.path.includes('reset-password') &&
             !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('product')) {

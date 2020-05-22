@@ -1,0 +1,179 @@
+body {
+  background-color: white;
+}
+
+.centered {
+  max-width: 650px;
+}
+
+.top-25 {
+  top: 25px;
+  position: relative;
+}
+
+.radius-100 {
+  border-radius: 100px;
+}
+
+.radius-0 {
+  border-radius: 0;
+}
+
+.img-wrap {
+  position: relative;
+}
+
+.img-wrap img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.img-wrap-150 {
+  height: 180px;
+  width: 100%;
+  -webkit-box-shadow: 3px 2px 6px rgba(222, 222, 222, 0.8);
+          box-shadow: 3px 2px 6px rgba(222, 222, 222, 0.8);
+}
+
+.box-wrapper {
+  margin-bottom: 25px;
+}
+
+.loader img {
+  max-width: 50px;
+}
+
+.color-theme {
+  color: green svg;
+  color-width: 30px;
+}
+
+.list-style-none {
+  padding-left: 0;
+}
+
+.list-style-none li {
+  list-style: none;
+}
+
+.list-style-none li a {
+  color: rgba(145, 148, 154, 0.95);
+}
+
+.list-margin li {
+  margin-bottom: 15px;
+}
+
+.list-border li {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.list-border li:not(:last-child) {
+  border-bottom: 1px solid rgba(222, 222, 222, 0.8);
+  margin-bottom: 8px;
+}
+
+.bg_border {
+  color: white;
+  padding: 10px 15px;
+}
+
+.bg_border--grey {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.border {
+  border: 1px solid rgba(222, 222, 222, 0.8);
+}
+
+.border-top {
+  border-top: 1px solid rgba(222, 222, 222, 0.8);
+}
+
+.border-2 {
+  border: 2px solid #dedede;
+}
+
+.icon-img, svg {
+  width: 30px;
+}
+
+.icon {
+  color: red;
+}
+
+.icon svg {
+  width: 30px;
+}
+
+.main-body {
+  min-height: 500px;
+}
+
+.widget {
+  padding-bottom: 25px;
+}
+
+.widget:not(:last-child) {
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.8);
+}
+
+.title-1 {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.title-1 span {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.title-2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.title-3 {
+  font-size: 1.5rem;
+}
+
+.title-4 {
+  font-size: 1.1rem;
+}
+
+.title-5 {
+  font-size: 0.95rem;
+}
+
+.title-bold {
+  font-weight: bold;
+}
+
+.title-underline {
+  position: relative;
+}
+
+.title-underline:after {
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid white;
+  display: inline-block;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  top: auto;
+}
+
+.title-up {
+  text-transform: uppercase;
+}
+
+.title-sm {
+  font-size: 80%;
+  opacity: 0.8;
+}
+/*# sourceMappingURL=common.css.map */

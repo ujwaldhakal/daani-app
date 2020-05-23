@@ -3,8 +3,11 @@
   import {goto} from '@sapper/app';
   import {setLocalStorageItem} from './../../services/storage'
   import {onMount} from 'svelte';
+  import Spinner from './../utils/loader/spinner.svelte'
 
+  let loader = false;
   async function loginFacebook() {
+    loader = true;
     let res = await loginWithFacebook();
 
     if (res && res.api_token) {
@@ -13,6 +16,7 @@
         return
 
     }
+    loader = false;
   }
 
   let FacebookSdk;
@@ -29,6 +33,8 @@
 <svelte:component this={FacebookSdk}/>
 
 
+<Spinner visibility={loader} />
+<br>
 <button class="btn btn-primary-outline btn-bloc" on:click={loginFacebook}>
 <img class="icon-sm" src="assets/img/icons/common/facebook.png" alt="Facebook" />
 Login with facebook</button>

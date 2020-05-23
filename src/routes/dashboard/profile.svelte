@@ -76,7 +76,6 @@
             <div class="col-8">
               <h3 class="mb-0">Edit profile </h3>
             </div>
-
           </div>
         </div>
         <div class="card-body">
@@ -86,19 +85,19 @@
             <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="name">Name</label>
-                    <input type="text" id="name" class="form-control" name="name" placeholder="Username" bind:value={currentUser.name}>
+                    <label class="form-control-label" for="name">Name *</label>
+                    <input type="text" id="name" class="form-control" name="name" placeholder="Name" bind:value={currentUser.name}>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="email">Email address</label>
-                    <input type="email" id="email" class="form-control" name="email" bind:value={currentUser.email}>
+                    <label class="form-control-label" for="email">Email address *</label>
+                    <input type="email" id="email" class="form-control" name="email" bind:value={currentUser.email} disabled>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="phone_number">Phone Number
+                    <label class="form-control-label" for="phone_number">Phone Number *
                       (Add working phone number so people can call you for product)</label>
                     <input type="tel" id="phone_number" class="form-control" name="phone_number"
                            bind:value={currentUser.phone_number}>
@@ -106,7 +105,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="address">Address </label>
+                    <label class="form-control-label" for="address">Address (This address will be used to contact you) </label>
                     <input type="text" id="address" class="form-control" name="address" bind:value={currentUser.address}>
                   </div>
                 </div>

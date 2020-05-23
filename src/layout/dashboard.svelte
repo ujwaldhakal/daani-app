@@ -11,6 +11,7 @@
   import Auth from "./../components/helpers/auth.svelte";
 
   let AuthRedirectHandler;
+  let toggleHamburgerMenu = false
 
   onMount(async () => {
     const module = await import("./../components/helpers/auth.svelte"); // for not rendering localstorage on ssr
@@ -22,6 +23,12 @@
   CURRENT_USER.subscribe(v => {
     return (currentUser = v);
   });
+
+
+  const toggleHamburger = () => {
+
+    toggleHamburgerMenu = toggleHamburgerMenu ? false : true;
+  }
 </script>
 
 <style lang="scss">
@@ -66,19 +73,22 @@
 <svelte:component this={AuthRedirectHandler} />
 <Auth />
 {#if currentUser.id}
-  <Sidebar />
+  <Sidebar shouldOpen={toggleHamburgerMenu} />
 
   <div class="main-content" id="panel">
     <!-- Snackbar -->
-    <div class="snackbar success">
-      <button class="close">
-        <i class="ni ni-fat-remove " />
-      </button>
-      <div class="content">
-        <p>Your profile details are incomplete</p>
-        <button class="btn btn-primary">Go to Profile</button>
+
+    {#if currentUser.name == '' || currentUser.address == '' && currentUser.phone_number == '' }
+      <div class="snackbar success">
+        <button class="close">
+          <i class="ni ni-fat-remove "/>
+        </button>
+        <div class="content">
+          <p>Your profile details are incomplete</p>
+          <button class="btn btn-primary">Go to Profile</button>
+        </div>
       </div>
-    </div>
+    {/if}
     <!-- Topnav -->
     <nav
       class="navbar navbar-top navbar-expand navbar-dark bg-primary
@@ -91,17 +101,18 @@
           </div>
           <ul class="navbar-nav align-items-center justify-end ml-auto ">
             <li class="nav-item d-xl-none">
-              <!-- Sidenav toggler -->
-              <div
+              <a
                 class="pr-3 sidenav-toggler sidenav-toggler-dark"
                 data-action="sidenav-pin"
-                data-target="#sidenav-main">
+                data-target="#sidenav-main"
+                on:click={toggleHamburger}
+              >
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line" />
                   <i class="sidenav-toggler-line" />
                   <i class="sidenav-toggler-line" />
                 </div>
-              </div>
+              </a>
             </li>
 
           </ul>

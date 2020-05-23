@@ -8,11 +8,14 @@
   import NotificationAlert from "./../../../components/utils/notification/alert.svelte";
   import { NOTIFICATION, SUCCESS, ERROR } from "./../../../services/store";
   import Spinner from "./../../../components/utils/loader/spinner.svelte";
+  import ErrorText from "./../../../components/utils/forms/error-messages.svelte"
+  import TextLoader from "./../../../components/utils/loader/general.svelte"
 
   let galleryPreviews = {};
   let formData;
   let errors;
   let loader = false;
+  let coverImgLoader = false;
 
   function initializeInitialErrors() {
     errors = JSON.parse(
@@ -83,6 +86,7 @@
   }
 
   async function uploadGallery(e) {
+
     console.log(e.target.files);
     if (e.target.files.length > 3) {
       let message = "You can only upload 3 photos max only";
@@ -92,6 +96,8 @@
 
       return true;
     }
+
+    loader = true
 
     try {
       const localFormData = new FormData();
@@ -110,13 +116,17 @@
         galleryPreviews = res.data.data;
         formData.galleryIds = Object.keys(galleryPreviews).toString();
       }
+
+      loader = false
     } catch (e) {
+      loader = false
       console.log(e);
     }
     // formData.galleryPreviews = galleryPreviews;
   }
 
   async function uploadCoverImage(e) {
+    coverImgLoader = true;
     formData.coverImagePreview = URL.createObjectURL(e.target.files[0]);
 
     try {
@@ -135,8 +145,10 @@
         if (res.data.status === "success") {
           formData.coverPicId = Object.keys(res.data.data)[0];
         }
+        coverImgLoader = false;
       }
     } catch (e) {
+      coverImgLoader = false;
       console.log(e);
     }
   }
@@ -272,7 +284,7 @@
       <div class="card-body">
 
         <div class="bg-secondary p-1">
-          <label for="exampleFormControlInput1">Product Name</label>
+          <label for="exampleFormControlInput1">Product Name *</label>
           <input
             type="text"
             class="form-control form-control-alternative {errors.name.message ? ' is-invalid' : 'valid'}"
@@ -280,9 +292,10 @@
             placeholder="Product Name"
             bind:value={formData.name} />
         </div>
-        <small class="error-text">{errors.name.message}</small>
+        <ErrorText message={errors.name.message}/>
+
         <div class="bg-secondary p-1">
-          <label for="exampleFormControlInput1">Select Category</label>
+          <label for="exampleFormControlInput1">Select Category *</label>
           <select
             class="form-control {errors.catId.message ? ' is-invalid' : 'valid'}"
             name="catId"
@@ -296,11 +309,11 @@
             {/each}
           </select>
         </div>
-        <small class="error-text">{errors.catId.message}</small>
+        <ErrorText message={errors.catId.message}/>
 
         {#if formData.subCategories.length > 0}
           <div class="bg-secondary p-1">
-            <label for="exampleFormControlInput1">Select Category</label>
+            <label for="exampleFormControlInput1">Select Category *</label>
             <select
               class="form-control {errors.catId.message ? ' is-invalid' : 'valid'}"
               on:change={selectSubCategory}>
@@ -311,11 +324,12 @@
               {/each}
             </select>
           </div>
-          <small class="error-text">{errors.catId.message}</small>
+
+          <ErrorText message={errors.subCatId.message}/>
         {/if}
 
         <div class="bg-secondary p-1">
-          <label for="exampleFormControlInput1">Description</label>
+          <label for="exampleFormControlInput1">Description * (Please include condition, usability , address , number or any more info)</label>
           <textarea
             class="form-control"
             id="exampleFormControlTextarea1 {errors.description.message ? ' is-invalid' : 'valid'}"
@@ -323,10 +337,10 @@
             name="description"
             bind:value={formData.description} />
         </div>
-        <small class="error-text">{errors.description.message}</small>
+        <ErrorText message={errors.description.message}/>
 
         <div class="bg-secondary p-1">
-          <label for="customFileLang">Add Cover Photo</label>
+          <label for="customFileLang">Add Cover Photo *</label>
           <div class="custom-file">
             <input
               type="file"
@@ -339,7 +353,8 @@
               Select file
             </label>
           </div>
-          <small class="error-text">{errors.coverPicId.message}</small>
+          <Spinner visibility={coverImgLoader}/>
+          <ErrorText message={errors.coverPicId.message}/>
 
           {#if formData.coverPicId.length > 0}
             <div class="card-thumbs">
@@ -369,7 +384,7 @@
               Select files
             </label>
           </div>
-          <small class="error-text">{errors.galleryIds.message}</small>
+          <ErrorText message={errors.galleryIds.message}/>
 
           {#if formData.galleryIds.length > 0}
             <div class="card-thumbs">

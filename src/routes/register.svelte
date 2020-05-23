@@ -6,6 +6,8 @@
   import NotificationAlert from './../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
   import Auth from './../components/helpers/auth.svelte'
+  import ErrorText from './../components/utils/forms/error-messages.svelte'
+
   let loader = false;
   let errors;
 
@@ -117,14 +119,15 @@
               <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
                       id="exampleInputEmail1" name="email" aria-describedby="emailHelp"
                       placeholder="Enter email">
-              <small id="email" class="form-text text-muted">{errors.email.message}</small>
+              <ErrorText message={errors.email.message}/>
+
             </div>
             <div class="form-group">
               <!-- <label for="exampleInputPassword1">Password</label> -->
               <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
                       name="password" id="exampleInputPassword1"
                       placeholder="Password">
-              <small id="email" class="form-text text-muted">{errors.password.message}</small>
+              <ErrorText message={errors.password.message}/>
             </div>
 
             <div class="form-group">
@@ -132,7 +135,7 @@
               <input type="password" class="form-control {errors.confirm_password.message ? ' is-invalid' : 'valid'}"
                       name="confirm_password" id="exampleInputPassword1"
                       placeholder="Confirm Password">
-              <small id="email" class="form-text text-muted">{errors.confirm_password.message}</small>
+              <ErrorText message={errors.confirm_password.message}/>
             </div>
 
             <NotificationAlert/>

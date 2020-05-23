@@ -9,12 +9,13 @@
   import FacebookLogin from './../components/login/facebook.svelte'
   import NotificationAlert from './../components/utils/notification/alert.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
+  import ErrorText from './../components/utils/forms/error-messages.svelte'
 
   let errors;
 
   initializeLocalState();
 
-  let buttonLoader = false;
+  let loader = false;
   let email;
   let password;
   let showRequestVerificationLink = false;
@@ -35,7 +36,7 @@
   }
 
   async function onSubmit(e) {
-    buttonLoader = true;
+    loader = true;
     initializeLocalState();
     e.preventDefault();
     email = e.target.email.value;
@@ -51,9 +52,8 @@
       errors.password.message = "Please fill your password !"
     }
 
-    console.log("upto here",{email : errors});
     if (errors.status) {
-      buttonLoader = false;
+      loader = false;
       return;
     }
 
@@ -80,7 +80,7 @@
 
     }
 
-    buttonLoader = false;
+    loader = false;
 
   }
 
@@ -117,7 +117,6 @@
     <h1 class="title-2 text-center">Welcome!</h1>
     <p>Use these awesome forms to login or create new account in your project for free.</p>
     <div class="card-wrapper centered text-center mt-4">
-      <small class="text-center d-block pb-2">Sign in with</small>
       <FacebookLogin/>
       <hr>
       <span class="text-center">Or sign in with credentials </span>
@@ -126,13 +125,13 @@
           <!-- <label for="exampleInputEmail1">Email</label> -->
           <input type="email" class="form-control {errors.email.message ? ' is-invalid' : 'valid'}"
                 name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="email" class="form-text text-muted">{errors.email.message}</small>
+          <ErrorText message={errors.email.message}/>
         </div>
         <div class="form-group">
           <!-- <label for="exampleInputPassword1">Password</label> -->
           <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
                 id="exampleInputPassword1" placeholder="Password" name="password">
-          <small id="password" class="form-text text-muted">{errors.password.message}</small>
+          <ErrorText message={errors.password.message}/>
         </div>
         <NotificationAlert/>
         {#if showRequestVerificationLink}
@@ -141,10 +140,9 @@
             <button on:click={requestVerificationLink}>here</button>
           </div>
         {/if}
-
-        <Spinner visibility={buttonLoader}/>
-        <button type="submit" class="btn btn-success btn-block mb-2">Login</button>
-        <!-- Forgot  Paswword -->
+        <Spinner visibility={loader}/>
+          <button type="submit" class="btn btn-success">Login</button>
+          <!-- <FacebookLogin/> -->
         <a href="/forgot-password">Forgot Password</a>
       </form>
     </div>

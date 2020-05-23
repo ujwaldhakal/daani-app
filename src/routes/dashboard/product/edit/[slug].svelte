@@ -11,6 +11,7 @@
   import NotificationAlert from "./../../../../components/utils/notification/alert.svelte";
   import { NOTIFICATION, SUCCESS, ERROR } from "./../../../../services/store";
   import Spinner from "./../../../../components/utils/loader/spinner.svelte";
+  import ErrorText from "./../../../../components/utils/forms/error-messages.svelte"
 
   const { page } = stores();
 
@@ -21,6 +22,7 @@
   let formData;
   let galleryPreviews = {};
   let loader = false;
+  let  coverImgLoader = false;
 
   function initializeInitialErrors() {
     errors = JSON.parse(
@@ -123,13 +125,15 @@
   }
 
   async function uploadGallery(e) {
-    console.log(e.target.files);
+
     if (e.target.files.length > 3) {
       let message = "You can only upload 3 photos max only";
       errors.galleryIds.message = message;
 
       return true;
     }
+
+    loader = true;
 
     try {
       const localFormData = new FormData();
@@ -142,7 +146,7 @@
       localFormData.append("subject_type", "product");
 
       localFormData.append("category", "gallery");
-      let url = "https://graphql.pagevamp.pv/" + "api/media";
+      let url = process.env.API_URL + "api/media";
       let res = await axios.post(url, localFormData);
       if (res.data.status === "success") {
         galleryPreviews = res.data.data;
@@ -150,12 +154,15 @@
 
         console.log("okn now", formData.galleryIds);
       }
+      loader = false;
     } catch (e) {
+      loader = false;
       console.log(e);
     }
   }
 
   async function uploadCoverImage(e) {
+    coverImgLoader = true;
     formData.coverImagePreview = URL.createObjectURL(e.target.files[0]);
 
     try {
@@ -169,14 +176,15 @@
         localFormData.append("subject_type", "product");
 
         localFormData.append("category", "cover_image");
-        let url = "https://graphql.pagevamp.pv/" + "api/media";
+        let url = process.env.API_URL + "api/media";
         let res = await axios.post(url, localFormData);
         if (res.data.status === "success") {
           formData.coverPicId = Object.keys(res.data.data)[0];
-          console.log("getting form control", formData);
         }
       }
+      coverImgLoader = false;
     } catch (e) {
+      coverImgLoader = false;
       console.log(e);
     }
   }
@@ -321,7 +329,8 @@
             placeholder="Product Name"
             bind:value={formData.name} />
         </div>
-        <small class="error-text">{errors.name.message}</small>
+        <ErrorText message={errors.name.message}/>
+
         <div class="bg-secondary p-1">
           <label for="exampleFormControlInput1">Select Category</label>
           <select
@@ -341,7 +350,7 @@
             {/each}
           </select>
         </div>
-        <small class="error-text">{errors.catId.message}</small>
+        <ErrorText message={errors.catId.message}/>
 
         {#if product.id && formData.subCategories.length > 0}
           <div class="bg-secondary p-1">
@@ -361,7 +370,7 @@
               {/each}
             </select>
           </div>
-          <small class="error-text">{errors.catId.message}</small>
+          <ErrorText message={errors.catId.message}/>
         {/if}
 
         <div class="bg-secondary p-1">
@@ -372,7 +381,7 @@
             rows="3"
             name="description"
             bind:value={formData.description} />
-          <small>{errors.description.message}</small>
+          <ErrorText message={errors.description.message}/>
         </div>
 
         <div class="bg-secondary p-1">
@@ -389,7 +398,8 @@
               Select file
             </label>
           </div>
-          <small class="error-text">{errors.coverPicId.message}</small>
+          <Spinner visibility={coverImgLoader}/>
+          <ErrorText message={errors.coverPicId.message}/>
 
           {#if formData.coverPicId.length > 0}
             <div class="card-thumbs">

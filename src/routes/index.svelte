@@ -86,7 +86,6 @@
 
 <svelte:head>
   <title>Collect Stuffs</title>
-  <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
 </svelte:head>
 <div class="top-header">
   <Header/>

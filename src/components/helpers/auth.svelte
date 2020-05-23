@@ -19,6 +19,13 @@
           'login'
   ];
 
+  let redirectForValidAuth = [
+    '/login',
+    '/reset-password',
+    '/forgot-password',
+    '/register',
+  ];
+
   console.log("this is path",$page.path)
   onMount(async () => {
 
@@ -39,7 +46,7 @@
           return res.data.me;
         });
 
-        if($page.path && ($page.path.includes('register') ||$page.path.includes('login'))) {
+        if($page.path && redirectForValidAuth.includes(path)) {
           goto('/dashboard/welcome')
           return;
         }

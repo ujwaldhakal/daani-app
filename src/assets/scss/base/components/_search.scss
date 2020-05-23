@@ -4,17 +4,19 @@
 .search-box{
     background-color: white;
     padding:15px;
-    border: 6px solid $color-primary;
-    border-radius: 10px;
+    border: none;
+    border-radius: 4px;
+    @include desktop{
+        border: 6px solid $color-primary;
+        border-radius: 10px;
+
+    }
     input{
         min-width: 150px;
         width: 100%;
         border: none;
-        margin-bottom: 10px;
+        // margin-bottom: 10px;
         border-bottom: 1px solid #cacaca;
-        @include tablet{
-            width: auto
-        }
         &:focus{
             border-bottom: 1px solid $color-primary !important;
 

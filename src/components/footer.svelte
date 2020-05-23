@@ -1,4 +1,4 @@
-<footer class="text-center footer">
+<footer class="text-center footer mt-3">
   <p>
     &copy;Copyright 2020, Company - All Rights Reserved. With &#10084; by Free Giveaway Team
   </p>

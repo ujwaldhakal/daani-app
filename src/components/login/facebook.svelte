@@ -27,4 +27,4 @@
 <svelte:component this={FacebookSdk}/>
 
 
-<button class="btn btn-primary" on:click={loginFacebook}>Login with facebook</button>
+<button class="btn btn-primary btn-block" on:click={loginFacebook}>Login with facebook</button>

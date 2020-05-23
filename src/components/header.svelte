@@ -21,21 +21,19 @@
 
 <style lang="scss">
   // @import '../assets/scss/base/main';
+  @import '../assets/scss/base/components/button';
   @import '../assets/scss/base/components/navbar';
 </style>
 
 <Auth/>
-<nav class="navbar navbar-expand-lg navbar-dark justify-content-between {bannerClass}">
+<nav class="navbar navbar-expand-lg navbar-dark {bannerClass}">
+  <a class="navbar-brand" href="/"><span>Collect<b>Stuffs</b></span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
           aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/">LOGO</a>
-<div class="d-inline">
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item active mr-2">
         <a class="nav-link" href="/">Home</a>
       </li>
@@ -45,7 +43,7 @@
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-light" href="/register">SignUp</a>
+          <a class="btn btn-light btn-radius" href="/register">SignUp</a>
         </li>
       {/if}
 
@@ -57,9 +55,6 @@
           <a class="nav-link" href="/dashboard/welcome">Dashboard</a>
         </li>
       {/if}
-  </ul>
+    </ul>
   </div>
-</div>
-
 </nav>
-

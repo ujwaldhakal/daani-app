@@ -1,3 +1,6 @@
+@import '../utils/variables';
+@import '../helpers/_mediaqueries';
+
 .box-wrapper{
     min-height: 300px;
     background-color: grey;
@@ -5,14 +8,24 @@
     position: relative;
     .hover{
         &-content{
-            opacity: 0;
-            background-color: rgba($color: #000000, $alpha: 1.0);
+            opacity: 1;
+            background-color: rgba($color-black, 0.48);
             color: white;
             transition: all 0.3s linear;
             position: absolute;
-            transform:translateY(50px) ;
+            transform:translateY(0) ;
             height: 100%;
             width: 100%;
+            @include desktop{
+                background-color: rgba($color-black, 0.6);
+                opacity: 0;
+                color: white;
+                transition: all 0.3s linear;
+                position: absolute;
+                transform:translateY(50px) ;
+                height: 100%;
+                width: 100%;
+            }
         }
     }
     &:hover{

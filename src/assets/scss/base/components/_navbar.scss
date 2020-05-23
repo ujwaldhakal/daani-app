@@ -1,6 +1,22 @@
+@import '../utils/variables';
+@import '../helpers/_mediaqueries';
+
 .navbar{
-    background-color: green;
+    background-color: $color-primary;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    @include tablet{
+        box-shadow: none
+    }
     &.bg-transparent{
         background-color: transparent;
+    }
+    &-toggler{
+        border: 1px solid #1ab13d;
+        padding: 2px 5px;
+        &:focus{
+            border: 1px solid #1ab13d;
+            outline: none
+
+        }
     }
 }

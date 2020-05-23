@@ -8,7 +8,7 @@ body {
 
 .centered{
     max-width: 100%;
-    @include tablet{
+    @include desktop{
         max-width: 650px;
     }
 }
@@ -40,6 +40,10 @@ body {
 .img{
     &-wrap{
         position: relative;
+        min-height: 250px;
+        @include desktop{
+            min-height: 220px;
+        }
         img{
             position: absolute;
             height: 100%;

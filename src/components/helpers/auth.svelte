@@ -8,12 +8,24 @@
   import { stores } from '@sapper/app';
   const { page } = stores();
 
+  let authExcludedRoutes = [
+          '/register',
+          '/',
+          '/reset-password',
+          '/forgot-password',
+          '/products',
+          '/product',
+          '/terms',
+          'login'
+  ];
+
+  console.log("this is path",$page.path)
   onMount(async () => {
 
 
-    if (!getLocalStorageItem('access_token') && !$page.path.includes('register')
-            && $page.path !== '/' && !$page.path.includes('reset-password') &&
-            !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('product')) {
+    let path = $page.path;
+
+    if (!getLocalStorageItem('access_token') && !authExcludedRoutes.includes(path)) {
         goto('/login')
         return
     }
@@ -34,8 +46,7 @@
       }
 
       if (res.data && !res.data.me) {
-        if ($page.path && (!$page.path.includes('register') && !$page.path.includes('login') && $page.path !== '/') && !$page.path.includes('reset-password')
-        && !$page.path.includes('forgot-password') && !$page.path.includes('products') && !$page.path.includes('product')) {
+        if ($page.path && !authExcludedRoutes.includes(path)) {
           goto('/login')
         }
       }

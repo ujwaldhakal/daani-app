@@ -136,7 +136,9 @@
             </div>
 
             <NotificationAlert/>
+
             <Spinner visibility={loader}/>
+            <br>
             <button type="submit" class="btn btn-success">Register</button>
           </form>
         </div>

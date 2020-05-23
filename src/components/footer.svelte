@@ -1,6 +1,6 @@
 <footer class="text-center footer mt-3">
   <p>
-    &copy;Copyright 2020, Company - All Rights Reserved. With &#10084; by Free Giveaway Team
+    &copy;Copyright 2020, Company - All Rights Reserved. With &#10084; by Daani Team
   </p>
   <p>
     <a href="/terms">Terms & Condition</a>

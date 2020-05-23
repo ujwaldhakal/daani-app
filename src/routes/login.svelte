@@ -141,9 +141,10 @@
             <button on:click={requestVerificationLink}>here</button>
           </div>
         {/if}
+
         <Spinner visibility={buttonLoader}/>
-          <button type="submit" class="btn btn-success">Login</button>
-          <!-- <FacebookLogin/> -->
+        <button type="submit" class="btn btn-success btn-block mb-2">Login</button>
+        <!-- Forgot  Paswword -->
         <a href="/forgot-password">Forgot Password</a>
       </form>
     </div>

@@ -28,6 +28,10 @@
             }
         }
     }
+    &-radius{
+        border-radius: 100px;
+        min-width: 100px;
+    }
     &-link{
         color: green !important;
     }
@@ -39,6 +43,35 @@
             width: 100%;
         }
 
+    }
+    &-outline{
+        &-primary{
+            border: 1px solid $color-primary;
+            padding: 5px 15px;
+            min-width: 150px;
+            width: 100%;
+            color: $color-primary;
+            margin-top: 15px;
+            background-color: transparent;
+               @include tablet{
+                margin-top: 0;
+                width: auto;
+
+            }
+            &:hover,  &:focus,  &:active{
+                background-color: $color-primary !important;
+                color: $color-white;
+                border-color: $color-primary !important;   
+                box-shadow: none;   
+            }
+            &:not(:disabled){
+                &:not(.diabled){
+                    &:active{
+                        background-color: $color-primary;
+                    }
+                }
+            }
+        }
     }
 }
 

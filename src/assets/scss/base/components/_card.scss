@@ -1,3 +1,6 @@
+@import '../utils/variables';
+@import '../helpers/_mediaqueries';
+
 .box-wrapper{
     min-height: 300px;
     background-color: grey;
@@ -5,14 +8,25 @@
     position: relative;
     .hover{
         &-content{
-            opacity: 0;
-            background-color: rgba($color: #000000, $alpha: 1.0);
+            opacity: 1;
+            background-color: rgba($color-black, 0.48);
             color: white;
             transition: all 0.3s linear;
-            position: absolute;
-            transform:translateY(50px) ;
+            position: static;
+            transform:translateY(0) ;
             height: 100%;
             width: 100%;
+            @include desktop{
+                background-color: rgba($color-black, 0.6);
+                opacity: 0;
+                color: white;
+                transition: all 0.3s linear;
+                position: absolute;
+                transform:translateY(50px) ;
+                top: 0;
+                height: 100%;
+                width: 100%;
+            }
         }
     }
     &:hover{
@@ -32,5 +46,14 @@
         border-radius: 5px;
         background-color: white;
         box-shadow: 1px 3px 10px rgba(0,0,0,0.08);
+        &-sm{
+            @include mobile{
+                max-width: 100%;
+                padding: 25px;
+                border-radius: 5px;
+                background-color: white;
+                box-shadow: 1px 3px 10px rgba(0,0,0,0.08);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 
 // For Responsiveness
+$mobile-sm: 481px !default
 $tablet: 768px !default
 $desktop-mini: 993px !default
 $desktop: 1024px !default
@@ -9,6 +10,10 @@ $widescreen: 1537px !default
 
 =mobile
   @media screen and (max-width: $tablet - 1px)
+    @content
+
+=mobile-sm
+  @media screen and (max-width: $mobile-sm - 1px)
     @content
 
 =tablet

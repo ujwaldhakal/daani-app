@@ -23,8 +23,12 @@
   })
 
 </script>
-
+<style lang="scss">
+  @import '../../assets/scss/base/components/icon';
+</style>
 <svelte:component this={FacebookSdk}/>
 
 
-<button class="btn btn-primary" on:click={loginFacebook}>Login with facebook</button>
+<button class="btn btn-primary-outline btn-bloc" on:click={loginFacebook}>
+<img class="icon-sm" src="assets/img/icons/common/facebook.png" alt="Facebook" />
+Login with facebook</button>

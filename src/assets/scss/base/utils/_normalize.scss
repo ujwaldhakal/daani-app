@@ -8,7 +8,7 @@ body {
 
 .centered{
     max-width: 100%;
-    @include tablet{
+    @include desktop{
         max-width: 650px;
     }
 }
@@ -40,6 +40,11 @@ body {
 .img{
     &-wrap{
         position: relative;
+        min-height: 250px;
+        margin-bottom: 0;
+        @include desktop{
+            min-height: 300px;
+        }
         img{
             position: absolute;
             height: 100%;
@@ -55,6 +60,45 @@ body {
     }
 }
 
+// divider
+.divider-line{
+    position: relative;
+    border-top: 2px solid #e6e6e6;
+    @include tablet{
+        border-left: 2px solid #e6e6e6;
+    }
+    .has-circle--sm{
+        @include tablet-max{
+            top: -15px;
+        }
+
+    }
+
+}
+
+.has-circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #d4d4d4;
+}
+
+//width
+/* width */
+.w {
+    &-80{
+        width: 80%;
+        &-md{
+            @include tablet{
+                width: 80%;
+            }
+        }
+    }
+}
+.w-child-80 > *{
+    width: 80%;
+}
 
 // box-wrapper
 .box{

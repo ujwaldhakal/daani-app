@@ -92,22 +92,22 @@
   // @import "src/assets/scss/test";
   @import '../assets/scss/base/helpers/font';
   @import '../assets/scss/base/components/button';
+  @import '../assets/scss/base/components/card';
   @import '../assets/scss/base/components/form';
+  @import '../assets/scss/base/utils/normalize';
 </style>
 
 <PublicLayout>
   <div class="container main-body pt-3">
    <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
-    <div class="card-wrapper mt-5 w-80">
+    <div class="card-wrapper-sm mt-5 w-80-md">
       <div class="d-md-flex">
         <div class="col align-right">
-          <div class="d-flex color-random  flex-column justify-content-center align-items-md-end h-100">
-            <FacebookLogin/>
-            <FacebookLogin/>
+          <div class="text-center d-md-flex color-random  flex-column justify-content-center align-items-md-end h-100">
             <FacebookLogin/>
           </div>
         </div>
-        <div class="divider-line mx-5">
+        <div class="divider-line my-5 mx-3 mx-md-5 p-3 p-sm-0">
           <span class="has_circle--sm item-center">OR</span>
         </div>
         <div class="col">
@@ -139,7 +139,7 @@
 
             <Spinner visibility={loader}/>
             <br>
-            <button type="submit" class="btn btn-success">Register</button>
+            <button type="submit" class="btn btn-success btn-block">Register</button>
           </form>
         </div>
       </div>

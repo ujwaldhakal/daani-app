@@ -21,16 +21,13 @@
 
 <style lang="scss">
   // @import '../assets/scss/base/main';
+  @import '../assets/scss/base/components/button';
   @import '../assets/scss/base/components/navbar';
 </style>
 
 <Auth/>
-<nav class="navbar navbar-expand-lg navbar-dark justify-content-between {bannerClass}">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="/" style="width: 140px">
+<nav class="navbar navbar-expand-lg navbar-dark {bannerClass}">
+  <a class="navbar-brand" href="/" style="width:125px"><span>
     <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 342 106">
       <g id="Group_2868" data-name="Group 2868" transform="translate(-132 -401)">
         <text id="Daani" transform="translate(246 487)" font-size="85" font-family="Volkswagen-Bold" font-weight="700"><tspan x="0" y="0">Daani</tspan></text>
@@ -43,13 +40,13 @@
         </g>
       </g>
     </svg>
-
-  </a>
-<div class="d-inline">
+  </span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item active mr-2">
         <a class="nav-link" href="/">Home</a>
       </li>
@@ -59,7 +56,7 @@
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-light" href="/register">SignUp</a>
+          <a class="btn btn-light btn-radius" href="/register">SignUp</a>
         </li>
       {/if}
 
@@ -71,9 +68,6 @@
           <a class="nav-link" href="/dashboard/welcome">Dashboard</a>
         </li>
       {/if}
-  </ul>
+    </ul>
   </div>
-</div>
-
 </nav>
-

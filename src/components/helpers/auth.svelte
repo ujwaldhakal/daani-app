@@ -26,13 +26,15 @@
     '/register',
   ];
 
-  console.log("this is path",$page.path)
+  console.log("this is path",$page)
+
+
   onMount(async () => {
 
 
     let path = $page.path;
 
-    if (!getLocalStorageItem('access_token') && !authExcludedRoutes.includes(path)) {
+    if (!getLocalStorageItem('access_token') && !authExcludedRoutes.includes(path) && !path.includes('/product')) {
         goto('/login')
         return
     }
@@ -53,7 +55,7 @@
       }
 
       if (res.data && !res.data.me) {
-        if ($page.path && !authExcludedRoutes.includes(path)) {
+        if ($page.path && !authExcludedRoutes.includes(path) && !path.includes('/product')) {
           goto('/login')
         }
       }

@@ -46,6 +46,7 @@ async function loginWithFacebook() {
   return new Promise(function (resolve, reject) {
 
     window.FB.login(function (res) {
+
       if (res.authResponse && res.authResponse.userID) {
 
         mutate(schema,
@@ -66,7 +67,7 @@ async function loginWithFacebook() {
 
         })
       }
-    })
+    }, {scope: 'email'})
 
   });
 

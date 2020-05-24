@@ -82,6 +82,9 @@
   @import '../assets/scss/base/common';
 </style>
 
+<svelte:head>
+  <title>Products List</title>
+</svelte:head>
 <PublicLayout>
   <div class="container">
     <div class="row pt-5">

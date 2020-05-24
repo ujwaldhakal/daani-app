@@ -73,6 +73,18 @@
       console.log(searchKeyword);
     }, 750);
   }
+
+  const getCoverImage =  (product ) => {
+    let imagePath = '';
+    product.media.filter((item) => {
+      if (item.category === 'cover_image') {
+        imagePath = item.path
+        return;
+      }
+    })
+
+    return imagePath;
+  }
 </script>
 
 {#if hasRequested}
@@ -108,7 +120,8 @@
               </td>
               <td>
                 <div class="avatar-group">
-                  <span>{product.category ? product.category.name : ''}</span>
+                  <img src={getCoverImage(product)} alt="" style="width:80px">
+
                 </div>
               </td>
 

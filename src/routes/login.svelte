@@ -114,8 +114,7 @@
 <Auth/>
 <PublicLayout>
   <div class="container centered main-body pt-2">
-    <h1 class="title-2 text-center">Welcome!</h1>
-    <p>Use these awesome forms to login or create new account in your project for free.</p>
+    <h1 class="title-2 text-center">Login</h1>
     <div class="card-wrapper centered text-center mt-4">
       <FacebookLogin/>
       <hr>
@@ -137,8 +136,9 @@
         {#if showRequestVerificationLink}
           <div class="request-verification">
             <span>You can re-generate email link from</span>
-            <button on:click={requestVerificationLink}>here</button>
+            <button class="btn btn-info" on:click={requestVerificationLink}>here</button>
           </div>
+          <br>
         {/if}
         <Spinner visibility={loader}/>
           <button type="submit" class="btn btn-success">Login</button>

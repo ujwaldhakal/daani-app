@@ -1,5 +1,11 @@
 <script>
 export let shouldOpen;
+import {removeLocalStorageItem} from './../../services/storage'
+const logout = () => {
+  removeLocalStorageItem('access_token');
+  window.location.href = '/';
+  return;
+}
 </script>
 
 <!-- Sidenav -->
@@ -57,6 +63,13 @@ export let shouldOpen;
             <a class="nav-link" href="/dashboard/profile">
               <i class="ni ni-circle-08 text-primary"></i>
               <span class="nav-link-text">Your Profile</span>
+            </a>
+          </li>
+
+          <li class="nav-item" style="cursor:pointer">
+            <a class="nav-link" on:click={logout}>
+              <i class="ni ni-scissors text-primary"></i>
+              <span class="nav-link-text">Logout</span>
             </a>
           </li>
 

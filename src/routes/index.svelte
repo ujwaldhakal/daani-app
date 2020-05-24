@@ -85,7 +85,7 @@
 </style>
 
 <svelte:head>
-  <title>Collect Stuffs</title>
+  <title>Donate your items</title>
 </svelte:head>
 <div class="top-header">
   <Header/>

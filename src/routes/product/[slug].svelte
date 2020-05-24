@@ -45,22 +45,22 @@
     {#if product.id}
       <div class="row py-5">
         <div class="col-md-8 col-sm-12">
-          <!-- {#if product.media.length > 0} -->
+           {#if product.media.length > 0}
           <Carousel perPage={{ 800: 1, 500: 1 }} autoplay={5000}>
-            <!-- {#each product.media as media} -->
+             {#each product.media as media}
             <div class="slide-content">
-              <img src="https://as.ftcdn.net/r/v1/pics/dec60d7bc0ac33b1bbdcca0522c44d5b7149395c/home/discover_collections/20AprNew/image-2020-03-27-15-06-21-252.jpg" alt="Kitten 1"/>
+              <img src="{media.path}" alt="Kitten 1"/>
             </div>
-                        <div class="slide-content">
-              <img src="https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg" alt="Kitten 1"/>
-            </div>
-                        <div class="slide-content">
-              <img src="https://as.ftcdn.net/r/v1/pics/dec60d7bc0ac33b1bbdcca0522c44d5b7149395c/home/discover_collections/20AprNew/image-2020-03-27-15-06-21-252.jpg" alt="Kitten 1"/>
-            </div>
-            
-              <!-- {/each} -->
+<!--                        <div class="slide-content">-->
+<!--              <img src="https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg" alt="Kitten 1"/>-->
+<!--            </div>-->
+<!--                        <div class="slide-content">-->
+<!--              <img src="https://as.ftcdn.net/r/v1/pics/dec60d7bc0ac33b1bbdcca0522c44d5b7149395c/home/discover_collections/20AprNew/image-2020-03-27-15-06-21-252.jpg" alt="Kitten 1"/>-->
+<!--            </div>-->
+
+               {/each}
           </Carousel>
-            <!-- {/if} -->
+             {/if}
           <div class="product-detail border-2 p-3 mb-3">
             <h4 class="title-4">Description</h4>
             {product.description}
@@ -70,7 +70,7 @@
           <div class="post widget">
             <h4 class="title-4 title-bold">Posted By :</h4>
             <div class="media">
-              <figure class="has-circle img-wrap mr-2" style="background-image:url('../assets/img/great-success.png')">
+              <figure class="has-circle mr-2" style="background-image:url('../assets/img/avatar.png')">
               </figure>
               <div class="media-body">
                 <h5 class="mt-0 title-5">{product.user.name}</h5>
@@ -81,10 +81,14 @@
           </div>
           <div class="post widget">
             {#if product.user.phone_number}
-            <h4 class="title-4 title-bold">Contact Number : {product.user.phone_number}</h4>
+            <h4 class="title-4 title-bold">Contact Number : <a href="tel:{product.user.phone_number}">{product.user.phone_number}</a></h4>
               {/if}
       {#if product.user.email}
-            <h4 class="title-4 title-bold">Email :{product.user.email} </h4>
+            <h4 class="title-4 title-bold">Email :  </h4><a href="mail:to{product.user.email}">{product.user.email}</a>
+      {/if}
+
+            {#if product.user.address}
+            <h4 class="title-4 title-bold">Address :{product.user.address} </h4>
         {/if}
           </div>
         </div>

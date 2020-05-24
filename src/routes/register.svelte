@@ -85,6 +85,7 @@
     NOTIFICATION.update(() => {
       return {type: SUCCESS, message: "Please check your email for verification"}
     })
+    loader = false;
   }
 
 </script>
@@ -101,7 +102,7 @@
 
 <PublicLayout>
   <div class="container main-body pt-3">
-   <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
+   <h1 class="title-2 text-center">Register</h1>
     <div class="card-wrapper-sm mt-5 w-80-md">
       <div class="d-md-flex">
         <div class="col align-right">

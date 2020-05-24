@@ -8,15 +8,22 @@
   let loader = false;
   async function loginFacebook() {
     loader = true;
-    let res = await loginWithFacebook();
 
-    if (res && res.api_token) {
-      setLocalStorageItem('access_token', res.api_token)
+    try {
+      let res = await loginWithFacebook();
+
+      if (res && res.api_token) {
+        setLocalStorageItem('access_token', res.api_token)
         window.location = window.location.origin + '/dashboard/welcome'
         return
 
+      }
+
+      loader = false;
+    } catch (e) {
+      consosle.log(e);
+      loader = false;
     }
-    loader = false;
   }
 
   let FacebookSdk;

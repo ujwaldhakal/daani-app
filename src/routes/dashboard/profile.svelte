@@ -127,7 +127,7 @@
           </div>
         </div>
         <div class="card-body">
-          <NotificationAlert/>
+
           <form on:submit={updateProfile}>
             <h6 class="heading-small text-muted mb-4">User information</h6>
             <div class="row">
@@ -162,6 +162,7 @@
                   </div>
                 </div>
             </div>
+            <NotificationAlert/>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>
 

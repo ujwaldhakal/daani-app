@@ -51,7 +51,9 @@
       search: searchQuery
     }
 
-    await loadProducts();
+    if(searchQuery !== '') {
+      await loadProducts();
+    }
   }
 </script>
 <style lang="scss">

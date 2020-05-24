@@ -26,7 +26,6 @@
     '/register',
   ];
 
-  console.log("this is path",$page)
 
 
   onMount(async () => {
@@ -48,8 +47,13 @@
           return res.data.me;
         });
 
+        let redirectPath = '/dashboard/welcome'
+        console.log("checking which name",res.data.name)
+        if(!res.data.me.name || res.data.me.name === '' ) {
+          redirectPath = '/dashboard/profile'
+        }
         if($page.path && redirectForValidAuth.includes(path)) {
-          goto('/dashboard/welcome')
+          goto(redirectPath);
           return;
         }
       }

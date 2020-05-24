@@ -9,14 +9,26 @@
   import { USER_FIELDS } from "./../entity/user";
   import Sidebar from "./../components/dashboard/sidebar.svelte";
   import Auth from "./../components/helpers/auth.svelte";
+  import {getLocalStorageItem} from "./../services/storage"
+  import { stores } from '@sapper/app';
+
+  const { page } = stores();
 
   let AuthRedirectHandler;
   let toggleHamburgerMenu = false
+  let showProfileAlert = true
 
-  onMount(async () => {
+
+    onMount(async () => {
     const module = await import("./../components/helpers/auth.svelte"); // for not rendering localstorage on ssr
     AuthRedirectHandler = module.default;
-  });
+
+      if($page.path &&($page.path === '/dashboard/profile' || $page.path === '/dashboard/product/add')) {
+        showProfileAlert = false;
+      }
+
+    console.log("current page",$page.path)
+    });
 
   let currentUser = USER_FIELDS;
 
@@ -28,6 +40,12 @@
   const toggleHamburger = () => {
 
     toggleHamburgerMenu = toggleHamburgerMenu ? false : true;
+  }
+
+  const hideProfileAlert = () => {
+    showProfileAlert = false;
+
+    console.log("getting herer man");
   }
 </script>
 
@@ -78,14 +96,14 @@
   <div class="main-content" id="panel">
     <!-- Snackbar -->
 
-    {#if currentUser.name == '' || currentUser.address == '' && currentUser.phone_number == '' }
+    {#if (!currentUser.name || !currentUser.name === '') && showProfileAlert  }
       <div class="snackbar success">
-        <button class="close">
+        <button class="close" on:click={hideProfileAlert}>
           <i class="ni ni-fat-remove "/>
         </button>
         <div class="content">
-          <p>Your profile details are incomplete</p>
-          <button class="btn btn-primary">Go to Profile</button>
+          <p>Your profile details are incomplete. Please complete them.</p>
+          <a class="btn btn-primary" href="/dashboard/profile">Go to Profile</a>
         </div>
       </div>
     {/if}

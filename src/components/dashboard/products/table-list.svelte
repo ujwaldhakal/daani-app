@@ -70,7 +70,6 @@
       const searchKeyword = e.target.value;
       initialFilter.search = searchKeyword;
       await loadProducts(initialPage, initialFilter);
-      console.log(searchKeyword);
     }, 750);
   }
 

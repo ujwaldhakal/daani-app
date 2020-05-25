@@ -41,6 +41,7 @@
 
     } catch (e) {
 
+      console.log(e);
     }
   }
 
@@ -68,6 +69,7 @@
 
   const searchByName = async () => {
     showLoader = true;
+    console.log("did we get query",searchQuery);
     filter.search =  searchQuery
     await search();
   }
@@ -97,7 +99,7 @@
           <ul class="list-style-none list-margin">
             {#each categories as category}
               {#if category.parent_id === 0}
-                <li><a on:click={() => searchByCat(category.id)}>{category.name} <span>(3)</span></a></li>
+                <li style="cursor:pointer"><a on:click={() => searchByCat(category.id)}>{category.name}</a></li>
               {/if}
             {/each}
           </ul>
@@ -105,7 +107,7 @@
           <form>
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search" bind:value={searchQuery}>
-              <button type="submit" on:click={searchByName} class="btn btn-success radius-0">Submit</button>
+              <button type="button" on:click={searchByName} class="btn btn-success radius-0">Submit</button>
             </div>
           </form>
         </aside>

@@ -7,6 +7,7 @@
   import {goto} from '@sapper/app';
   import PublicLayout from './../layout/public.svelte'
   import {NOTIFICATION, SUCCESS, ERROR} from './../services/store'
+  import ErrorText from './../components/utils/forms/error-messages.svelte'
 
   const {page} = stores();
   let label = 'Verifying your request';
@@ -49,7 +50,7 @@
         NOTIFICATION.update(() => {
           return {
             type:  ERROR,
-            message:  "Could not reset your password. Please contact us at support@daani.life"
+            message:  "Could not reset your password. Please contact us at daaniteam@gmail.com"
           }
         })
         goto('/login')
@@ -105,7 +106,7 @@
     NOTIFICATION.update(() => {
       return {
         type: res ? SUCCESS : ERROR,
-        message: res ? "Successfully changed password now you can login with new credentials": "Please contact us at support@daani.life"
+        message: res ? "Successfully changed password now you can login with new credentials": "Please contact us at daaniteam@gmail.com"
       }
     })
 
@@ -118,10 +119,11 @@
 
 </script>
 
-<style>
+<style lang="scss">
   @import '../assets/scss/base/main';
   @import '../assets/scss/base/components/form';
 </style>
+
 
 {#if !validToken}
 <Loader label={label}/>
@@ -129,20 +131,20 @@
 {#if validToken}
 <PublicLayout>
   <div class="container centered main-body pt-3">
-    <h1 class="title-2 text-center">One man trash is anothers treasure</h1>
+    <h1 class="title-2 text-center">Reset Password</h1>
     <div class="card-wrapper centered mt-5">
       <form on:submit={submit} class="form-center">
         <div class="form-group">
           <label for="exampleInputEmail1">New Passowrd</label>
           <input type="password" class="form-control {errors.password.message ? ' is-invalid' : 'valid'}"
                  name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New Password">
-          <small id="email" class="form-text text-muted">{errors.password.message}</small>
+          <ErrorText message={errors.password.message}/>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Confirm Password</label>
           <input type="password" name="confirm_password" class="form-control {errors.confirm_password.message ? ' is-invalid' : 'valid'}"
                  id="exampleInputPassword1" placeholder="Password">
-          <small id="password" class="form-text text-muted">{errors.confirm_password.message}</small>
+          <ErrorText message={errors.confirm_password.message}/>
         </div>
         <NotificationAlert/>
 

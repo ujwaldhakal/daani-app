@@ -118,7 +118,7 @@
     <div class="card-wrapper centered text-center mt-4">
       <FacebookLogin/>
       <hr>
-      <span class="text-center">Or sign in with credentials </span>
+      <span class="text-center">The things you share might mean a lot for needy ones ! </span>
       <form on:submit={onSubmit} class="form-center mt-3">
         <div class="form-group">
           <!-- <label for="exampleInputEmail1">Email</label> -->

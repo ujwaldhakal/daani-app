@@ -85,7 +85,7 @@
 </style>
 
 <svelte:head>
-  <title>Products List</title>
+  <title>Take products for free !</title>
 </svelte:head>
 <PublicLayout>
   <div class="container">

@@ -66,6 +66,13 @@ const logout = () => {
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/support">
+              <i class="ni ni-email-83 text-primary"></i>
+              <span class="nav-link-text">Support</span>
+            </a>
+          </li>
+
           <li class="nav-item" style="cursor:pointer">
             <a class="nav-link" on:click={logout}>
               <i class="ni ni-scissors text-primary"></i>

@@ -10,7 +10,6 @@ const {buildAxiosFetch} = require("@lifeomic/axios-fetch");
 
 const httpLink = createHttpLink({uri: process.env.API_URL+'graphql', fetch: buildAxiosFetch(axios)});
 
-console.log(getLocalStorageItem('access_token'));
 const authLink = setContext((_, {headers}) => {
   // get the authentication token from local storage if it exists
   const token = getLocalStorageItem('access_token');

@@ -48,7 +48,7 @@
       NOTIFICATION.update(() => {
         return {
           type: res ? SUCCESS : ERROR,
-          message: res ? 'Please check your email' : 'Please contact support!'
+          message: res ? 'Please check your email' : 'Please contact us at support@daani.life '
         }
       })
     loader = false;

@@ -1,6 +1,5 @@
 export function getLocalStorageItem(key) {
   if (typeof localStorage !== "undefined") {
-    console.log("getting upto here", localStorage)
     return localStorage.getItem(getPrefix() + key);
   }
 }

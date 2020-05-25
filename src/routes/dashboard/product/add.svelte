@@ -10,12 +10,22 @@
   import Spinner from "./../../../components/utils/loader/spinner.svelte";
   import ErrorText from "./../../../components/utils/forms/error-messages.svelte"
   import TextLoader from "./../../../components/utils/loader/general.svelte"
+  import { CURRENT_USER } from "./../../../services/store";
+  import { USER_FIELDS } from "./../../../entity/user";
 
   let galleryPreviews = {};
   let formData;
   let errors;
   let loader = false;
   let coverImgLoader = false;
+  let currentUser = USER_FIELDS;
+
+  CURRENT_USER.subscribe(v => {
+    console.log("getting currnt user",currentUser)
+    return (currentUser = v);
+  });
+
+
 
   function initializeInitialErrors() {
     errors = JSON.parse(
@@ -110,6 +120,7 @@
       localFormData.append("subject_type", "product");
 
       localFormData.append("category", "gallery");
+
       let url = process.env.API_URL + "api/media";
       let res = await axios.post(url, localFormData);
       if (res.data.status === "success") {
@@ -154,6 +165,9 @@
   }
 
   async function submit(e) {
+    if(!currentUser.name || currentUser.name === '') {
+      return false;
+    }
     loader = true;
     initializeInitialErrors();
     e.preventDefault();
@@ -267,6 +281,28 @@
 </style>
 
 <DashboardLayout>
+
+  <!-- Modal -->
+  {#if !currentUser.name || currentUser.name === '' }
+  <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: block">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Sorry you cannot add product without filling your details
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-primary" href="/dashboard/profile">Goto Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    {/if}
 
   <form on:submit={submit}>
 

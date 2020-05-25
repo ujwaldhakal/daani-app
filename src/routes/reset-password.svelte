@@ -49,7 +49,7 @@
         NOTIFICATION.update(() => {
           return {
             type:  ERROR,
-            message:  "Could not reset your password. Please contact support"
+            message:  "Could not reset your password. Please contact us at support@daani.life"
           }
         })
         goto('/login')
@@ -105,7 +105,7 @@
     NOTIFICATION.update(() => {
       return {
         type: res ? SUCCESS : ERROR,
-        message: res ? "Successfully changed password now you can login with new credentials": "Please contact support"
+        message: res ? "Successfully changed password now you can login with new credentials": "Please contact us at support@daani.life"
       }
     })
 

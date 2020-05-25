@@ -26,14 +26,17 @@
   const loadProducts = async () => {
     try {
       let res = await loadAllPublicProducts(currentPage, filter);
+      console.log("wtf",res)
       if (!res.errors) {
+
         products = products.concat(res.data);
-        console.log('data', this.products)
         paginator = res.paginatorInfo
+
       }
 
     } catch (e) {
 
+      console.log(e);
     }
   }
 
@@ -43,15 +46,15 @@
   }
 
   const search = async () => {
-    products = [];
-    paginator = [];
-    currentPage = 1;
-    filter = {
-      latest: true,
-      search: searchQuery
-    }
+    if (searchQuery !== '') {
+      products = [];
+      paginator = [];
+      currentPage = 1;
+      filter = {
+        latest: true,
+        search: searchQuery
+      }
 
-    if(searchQuery !== '') {
       await loadProducts();
     }
   }
@@ -115,6 +118,7 @@
         Please wait while we load products
       </div>
     {/if}
+
     {#if paginator &&  currentPage < paginator.lastPage }
       <div class="col-md-12">
         <div class="text-center">

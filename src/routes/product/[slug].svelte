@@ -81,15 +81,16 @@
           </div>
           <div class="post widget">
             {#if product.user.phone_number}
-            <h4 class="title-4 title-bold">Contact Number : <a href="tel:{product.user.phone_number}">{product.user.phone_number}</a></h4>
+            <div class="user-info">
+            <span class="title-4 ">Contact Number : </span> <a href="tel:{product.user.phone_number}">{product.user.phone_number}</a>
+            </div>
               {/if}
-      {#if product.user.email}
-            <h4 class="title-4 title-bold">Email :  </h4><a href="mail:to{product.user.email}">{product.user.email}</a>
-      {/if}
 
             {#if product.user.address}
-            <h4 class="title-4 title-bold">Address :{product.user.address} </h4>
-        {/if}
+            <div class="user-info">
+            <span class="title-4 ">Address :</span> {product.user.address}
+            </div>
+            {/if}
           </div>
         </div>
       </div>

@@ -51,6 +51,10 @@
         <a class="nav-link" href="/">Home</a>
       </li>
 
+      <li class="nav-item active mr-2">
+        <a class="nav-link" href="/products">Products</a>
+      </li>
+
       {#if !currentUser.id}
         <li class="nav-item active mr-2">
           <a class="nav-link" href="/login">Login</a>

@@ -86,6 +86,12 @@
             </div>
               {/if}
 
+            {#if product.user.email}
+            <div class="user-info">
+            <span class="title-4 ">Email : </span> <a href="mailto:{product.user.email}">{product.user.email}</a>
+            </div>
+              {/if}
+
             {#if product.user.address}
             <div class="user-info">
             <span class="title-4 ">Address :</span> {product.user.address}

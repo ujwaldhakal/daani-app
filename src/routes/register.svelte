@@ -103,17 +103,22 @@
 <PublicLayout>
   <div class="container main-body pt-3">
    <h1 class="title-2 text-center">Register</h1>
+
     <div class="card-wrapper-sm mt-5 w-80-md">
+
       <div class="d-md-flex">
+
         <div class="col align-right">
           <div class="text-center d-md-flex color-random  flex-column justify-content-center align-items-md-end h-100">
             <FacebookLogin/>
+            <span>Thousands of candles can be lighted from a single candle. Happiness never decreases by being shared. </span>
           </div>
         </div>
         <div class="divider-line my-5 mx-3 mx-md-5 p-3 p-sm-0">
           <span class="has_circle--sm item-center">OR</span>
         </div>
         <div class="col">
+
           <form on:submit={submit} class="form">
             <div class="form-group">
               <!-- <label for="exampleInputEmail1">Email address</label> -->

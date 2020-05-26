@@ -14,6 +14,7 @@
   let filter = {
     latest: true
   }
+  let loader = true;
   let products = [];
   let paginator = [];
   let searchQuery = '';
@@ -25,6 +26,7 @@
 
   const loadProducts = async () => {
     try {
+      loader = true;
       let res = await loadAllPublicProducts(currentPage, filter);
       console.log("wtf",res)
       if (!res.errors) {
@@ -34,8 +36,10 @@
 
       }
 
-    } catch (e) {
+      loader = false;
 
+    } catch (e) {
+      loader = false;
       console.log(e);
     }
   }
@@ -112,10 +116,16 @@
     {#each products as product}
       <ProductBox details={product} layout="home"/>
     {/each}
-    {#if products.length == 0}
+    {#if loader}
       <div class="loader text-center w-100">
         <img src="../assets/img/icons/loader.gif">
         Please wait while we load products
+      </div>
+    {/if}
+
+    {#if !loader && products.length === 0}
+      <div class="loader text-center w-100">
+        No any products
       </div>
     {/if}
 

@@ -361,7 +361,7 @@
             </select>
           </div>
 
-          <ErrorText message={errors.subCatId.message}/>
+          <ErrorText message={errors.catId.message}/>
         {/if}
 
         <div class="bg-secondary p-1">

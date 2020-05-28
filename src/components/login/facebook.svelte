@@ -21,7 +21,7 @@
 
       loader = false;
     } catch (e) {
-      consosle.log(e);
+      console.log(e);
       loader = false;
     }
   }

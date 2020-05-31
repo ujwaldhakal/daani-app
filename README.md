@@ -1,5 +1,5 @@
 ![Build and Deploy to Cloud Run](https://github.com/ujwaldhakal/things-for-granted-svelte/workflows/Build%20and%20Deploy%20to%20Cloud%20Run/badge.svg)
-## Free Giveaway
+## Daani
 
 Since we are throwing away many consumable goods which could have been helpful for others. 
 So this is the place where you list your things out instead of throwing it away. Just visit xxx , register and list down

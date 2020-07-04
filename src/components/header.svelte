@@ -72,6 +72,10 @@
           <a class="nav-link" href="/dashboard/welcome">Dashboard</a>
         </li>
       {/if}
+
+      <li class="nav-item">
+        <a class="nav-link" style="color:white" href="/terms">Privacy Policy</a>
+      </li>
     </ul>
   </div>
 </nav>

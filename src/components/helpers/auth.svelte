@@ -16,6 +16,7 @@
           '/products',
           '/product',
           '/terms',
+          '/privacy-policy',
           'login'
   ];
 

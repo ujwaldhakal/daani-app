@@ -74,7 +74,7 @@
       {/if}
 
       <li class="nav-item">
-        <a class="nav-link" style="color:white" href="/terms">Privacy Policy</a>
+        <a class="nav-link" style="color:white" href="/privacy-policy">Privacy Policy</a>
       </li>
     </ul>
   </div>
